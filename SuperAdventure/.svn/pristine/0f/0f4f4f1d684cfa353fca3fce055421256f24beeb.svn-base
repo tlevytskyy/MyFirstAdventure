@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Engine
+{
+    public class Monster: LivingCreature
+    {
+        public int ID;
+        public string Name;
+        public double MaximumDamage;
+        public int RewardExperiencePoints;
+        public int RewardGold;
+        public int Weakness;
+        public List<LootItem> LootTable;
+
+        public Monster(int id, string name, double maxdamage, int rewardexp, int rewardgold, double currenthp, double maxhp, int weakness) : base(currenthp,maxhp)
+        {
+            ID = id;
+            Name = name;
+            MaximumDamage = maxdamage;
+            Weakness = weakness;
+
+            RewardExperiencePoints = rewardexp;
+            RewardGold = rewardgold;
+            LootTable = new List<LootItem>();
+
+
+        }
+        public Monster(int id, string name, double maxdamage, int rewardexp, int rewardgold, double currenthp, double maxhp) : base(currenthp, maxhp)
+        {
+            ID = id;
+            Name = name;
+            MaximumDamage = maxdamage;
+
+            RewardExperiencePoints = rewardexp;
+            RewardGold = rewardgold;
+            LootTable = new List<LootItem>();
+
+
+        }
+        public static bool IsWeakTo(int monsterweakness, int damagetype)
+        {
+            bool weakness = false;
+            while (monsterweakness != 0)
+            {
+                if (monsterweakness == damagetype)
+                {
+                    weakness = true;
+                    return weakness;
+                }
+                else
+                    return weakness;
+            }
+            return weakness;
+        }
+    }
+}

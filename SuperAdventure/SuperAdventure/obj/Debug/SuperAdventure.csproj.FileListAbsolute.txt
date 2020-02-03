@@ -1,0 +1,28 @@
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.exe.config
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.exe
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.pdb
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\Engine.dll
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\Engine.pdb
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csprojAssemblyReference.cache
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.Properties.Resources.resources
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.GenerateResource.cache
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.CopyComplete
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.exe
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.pdb
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.SuperAdventure.resources
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\ID Directory.dll
+C:\Users\Taras\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\ID Directory.pdb
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.exe.config
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.exe
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\SuperAdventure.pdb
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\Engine.dll
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\ID Directory.dll
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\Engine.pdb
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\bin\Debug\ID Directory.pdb
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csprojAssemblyReference.cache
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.Properties.Resources.resources
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.SuperAdventure.resources
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.GenerateResource.cache
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.CopyComplete
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.exe
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.pdb

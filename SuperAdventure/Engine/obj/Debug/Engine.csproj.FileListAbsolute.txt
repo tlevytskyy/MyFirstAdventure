@@ -1,0 +1,16 @@
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\bin\Debug\Engine.dll
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\bin\Debug\Engine.pdb
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.dll
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.pdb
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.csprojAssemblyReference.cache
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\bin\Debug\ID Directory.dll
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\bin\Debug\ID Directory.pdb
+C:\Users\Taras\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.csproj.CopyComplete
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\bin\Debug\Engine.dll
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\bin\Debug\Engine.pdb
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\bin\Debug\ID Directory.dll
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\bin\Debug\ID Directory.pdb
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.csprojAssemblyReference.cache
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.csproj.CopyComplete
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.dll
+C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\Engine\obj\Debug\Engine.pdb

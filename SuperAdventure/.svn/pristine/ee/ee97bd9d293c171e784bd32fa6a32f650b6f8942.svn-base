@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperAdventure", "SuperAdventure\SuperAdventure.csproj", "{7768D728-F012-4DA0-8C7F-3CE846A3CA95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{14D86F1B-39F9-4C30-99A4-3CC0855F625E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ID Directory", "ID Directory\ID Directory.csproj", "{C346E582-3A21-4EB1-9710-A1D41FCEA4AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7768D728-F012-4DA0-8C7F-3CE846A3CA95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7768D728-F012-4DA0-8C7F-3CE846A3CA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7768D728-F012-4DA0-8C7F-3CE846A3CA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7768D728-F012-4DA0-8C7F-3CE846A3CA95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D86F1B-39F9-4C30-99A4-3CC0855F625E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D86F1B-39F9-4C30-99A4-3CC0855F625E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D86F1B-39F9-4C30-99A4-3CC0855F625E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D86F1B-39F9-4C30-99A4-3CC0855F625E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C346E582-3A21-4EB1-9710-A1D41FCEA4AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C346E582-3A21-4EB1-9710-A1D41FCEA4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C346E582-3A21-4EB1-9710-A1D41FCEA4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C346E582-3A21-4EB1-9710-A1D41FCEA4AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {6058B871-03D4-4F81-94BD-11ED17DCFE0C}
+	EndGlobalSection
+EndGlobal
