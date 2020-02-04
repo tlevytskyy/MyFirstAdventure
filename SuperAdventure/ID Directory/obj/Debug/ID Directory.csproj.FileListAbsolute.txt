@@ -8,3 +8,8 @@ C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\ID Directory\bin\Debug\
 C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\ID Directory\obj\Debug\ID Directory.csprojAssemblyReference.cache
 C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\ID Directory\obj\Debug\ID Directory.dll
 C:\Users\Taras Levytskyy\Desktop\Projects\SuperAdventure\ID Directory\obj\Debug\ID Directory.pdb
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\bin\Debug\ID Directory.dll
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\bin\Debug\ID Directory.pdb
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.csprojAssemblyReference.cache
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.dll
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.pdb

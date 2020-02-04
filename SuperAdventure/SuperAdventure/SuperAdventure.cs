@@ -23,7 +23,7 @@ namespace SuperAdventure
             InitializeComponent();
 
             _player = new Player(10, 10, 20, 0);
-            MoveTo(World.LocationByID(IDLocation.HOME));
+            MoveTo(World.LocationByCords(IDLocation.HOME1));
             _player.Inventory.Add(new InventoryItem(World.ItemByID(IDWeapon.RUSTY_SWORD), 1));
 
             lblHitPoints.Text = _player.CurrentHitPoints.ToString();
@@ -426,7 +426,7 @@ namespace SuperAdventure
                     rtbMessages.Text += "The " + _currentMonster.Name + " killed you." + Environment.NewLine;
 
                     // Move player to "Home"
-                    MoveTo(World.LocationByID(IDLocation.HOME));
+                    MoveTo(World.LocationByCords(IDLocation.HOME1));
                 }
             }
         }
@@ -478,7 +478,7 @@ namespace SuperAdventure
                 ScrollToBottomOfMessages();
 
                 // Move player to "Home"
-                MoveTo(World.LocationByID(IDLocation.HOME));
+                MoveTo(World.LocationByCords(IDLocation.HOME1));
             }
 
             // Refresh player data in UI

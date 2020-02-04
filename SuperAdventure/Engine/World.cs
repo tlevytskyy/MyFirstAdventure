@@ -9,6 +9,7 @@ namespace Engine
 {
     public static class World
     {
+        public static readonly Location[,] MapArray = new Location[10, 10];
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<Monster> Monsters = new List<Monster>();
         public static readonly List<Quest> Quests = new List<Quest>();
@@ -20,6 +21,7 @@ namespace Engine
             PopulateMonsters();
             PopulateQuests();
             PopulateLocations();
+            PopulateMapArray();
         }
         
         private static void PopulateItems()
@@ -84,27 +86,27 @@ namespace Engine
         private static void PopulateLocations()
         {
             // Create each location
-            Location home = new Location(IDLocation.HOME, "Home", "Your house. You really need to clean up the place.");
+            Location home = new Location(IDLocation.HOME1, "Home", "Your house. You really need to clean up the place.");
 
-            Location townSquare = new Location(IDLocation.TOWN_SQUARE, "Town square", "You see a fountain.");
+            Location townSquare = new Location(IDLocation.TOWN_SQUARE1, "Town square", "You see a fountain.");
 
-            Location alchemistHut = new Location(IDLocation.ALCHEMIST_HUT, "Alchemist's hut", "There are many strange plants on the shelves.");
+            Location alchemistHut = new Location(IDLocation.ALCHEMIST_HUT1, "Alchemist's hut", "There are many strange plants on the shelves.");
             alchemistHut.QuestAvailableHere = QuestByID(IDQuest.CLEAR_ALCHEMIST_GARDEN);
 
-            Location alchemistsGarden = new Location(IDLocation.ALCHEMISTS_GARDEN, "Alchemist's garden", "Many plants are growing here.");
+            Location alchemistsGarden = new Location(IDLocation.ALCHEMISTS_GARDEN1, "Alchemist's garden", "Many plants are growing here.");
             alchemistsGarden.MonsterLivingHere = MonsterByID(IDMonster.RAT);
 
-            Location farmhouse = new Location(IDLocation.FARMHOUSE, "Farmhouse", "There is a small farmhouse, with a farmer in front.");
+            Location farmhouse = new Location(IDLocation.FARMHOUSE1, "Farmhouse", "There is a small farmhouse, with a farmer in front.");
             farmhouse.QuestAvailableHere = QuestByID(IDQuest.CLEAR_FARMERS_FIELD);
 
-            Location farmersField = new Location(IDLocation.FARM_FIELD, "Farmer's field", "You see rows of vegetables growing here.");
+            Location farmersField = new Location(IDLocation.FARM_FIELD1, "Farmer's field", "You see rows of vegetables growing here.");
             farmersField.MonsterLivingHere = MonsterByID(IDMonster.SNAKE);
 
-            Location guardPost = new Location(IDLocation.GUARD_POST, "Guard post", "There is a large, tough-looking guard here.", ItemByID(IDItem.ADVENTURER_PASS));
+            Location guardPost = new Location(IDLocation.GUARD_POST1, "Guard post", "There is a large, tough-looking guard here.", ItemByID(IDItem.ADVENTURER_PASS));
 
-            Location bridge = new Location(IDLocation.BRIDGE, "Bridge", "A stone bridge crosses a wide river.");
+            Location bridge = new Location(IDLocation.BRIDGE1, "Bridge", "A stone bridge crosses a wide river.");
 
-            Location spiderField = new Location(IDLocation.SPIDER_FIELD, "Forest", "You see spider webs covering covering the trees in this forest.");
+            Location spiderField = new Location(IDLocation.SPIDER_FIELD1, "Forest", "You see spider webs covering covering the trees in this forest.");
             spiderField.MonsterLivingHere = MonsterByID(IDMonster.GIANT_SPIDER);
 
             // Link the locations together
@@ -184,17 +186,49 @@ namespace Engine
             return null;
         }
 
-        public static Location LocationByID(int id)
+        public static Location LocationByCords(int[] cords)
         {
             foreach (Location location in Locations)
             {
-                if (location.ID == id)
+                if (location.Coordinates.SequenceEqual(cords))
                 {
                     return location;
                 }
             }
 
             return null;
+        }
+        public static void PopulateMapArray()
+        {
+          
+            int[] cordarray = new int[2] { 0, 0 };
+
+            for (int row = 0; row < MapArray.GetLength(0); row++)
+            {
+                for (int columb = 0; columb < MapArray.GetLength(1); columb++)
+                {
+                    foreach (Location locals in Locations)
+                    {
+                        if (locals.Coordinates.SequenceEqual(cordarray))
+                        {
+                            MapArray[cordarray[0], cordarray[1]] = locals;
+                        }
+
+
+                    }
+                    cordarray[1]++;
+
+
+
+
+                }
+                cordarray[1] = 0;
+                cordarray[0]++;
+
+
+
+            }
+
         }
     }
 }
