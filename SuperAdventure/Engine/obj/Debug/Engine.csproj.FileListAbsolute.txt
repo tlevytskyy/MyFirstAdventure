@@ -22,3 +22,4 @@ C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\ob
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.csproj.CopyComplete
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.dll
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.pdb
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\GDIDrawer.dll

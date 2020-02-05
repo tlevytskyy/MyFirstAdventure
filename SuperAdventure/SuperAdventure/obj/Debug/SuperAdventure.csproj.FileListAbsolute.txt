@@ -40,3 +40,4 @@ C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\SuperAdve
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.csproj.CopyComplete
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.exe
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\SuperAdventure\obj\Debug\SuperAdventure.pdb
+C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\SuperAdventure\bin\Debug\GDIDrawer.dll

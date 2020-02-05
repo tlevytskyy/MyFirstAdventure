@@ -18,14 +18,14 @@ namespace ID_Directory
         public const int BRIDGE = 8;
         public const int SPIDER_FIELD = 9;
 
-        public static int[] HOME1 = new int[2] { 5, 10 };
-        public static int[] TOWN_SQUARE1 = new int[2] { 5, 9 };
-        public static int[] GUARD_POST1 = new int[2] { 6, 9 };
-        public static int[] ALCHEMIST_HUT1 = new int[2] { 5, 8 };
-        public static int[] ALCHEMISTS_GARDEN1 = new int[2] { 5, 7 };
-        public static int[] FARMHOUSE1 = new int[2] { 4, 9 };
-        public static int[] FARM_FIELD1 = new int[2] { 3, 9 };
-        public static int[] BRIDGE1 = new int[2] { 7, 9 };
-        public static int[] SPIDER_FIELD1 = new int[2] { 8, 9 };
+        public static int[] HOME1 = new int[2] { 4, 9 };
+        public static int[] TOWN_SQUARE1 = new int[2] { 4, 8 };
+        public static int[] GUARD_POST1 = new int[2] { 5, 8 };
+        public static int[] ALCHEMIST_HUT1 = new int[2] { 4, 7 };
+        public static int[] ALCHEMISTS_GARDEN1 = new int[2] { 4, 6 };
+        public static int[] FARMHOUSE1 = new int[2] { 3, 8 };
+        public static int[] FARM_FIELD1 = new int[2] { 2, 8 };
+        public static int[] BRIDGE1 = new int[2] { 6, 8 };
+        public static int[] SPIDER_FIELD1 = new int[2] { 7, 8 };
     }
 }

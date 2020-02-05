@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ID_Directory;
+using System.Drawing;
+using GDIDrawer;
 
 namespace Engine
 {
@@ -22,6 +24,7 @@ namespace Engine
             PopulateQuests();
             PopulateLocations();
             PopulateMapArray();
+            DrawMapArray();
         }
         
         private static void PopulateItems()
@@ -213,8 +216,6 @@ namespace Engine
                         {
                             MapArray[cordarray[0], cordarray[1]] = locals;
                         }
-
-
                     }
                     cordarray[1]++;
 
@@ -229,6 +230,29 @@ namespace Engine
 
             }
 
+        }
+        public static void DrawMapArray()
+        {
+            CDrawer Canvas = new CDrawer(500,500);
+            Canvas.Scale = 50;
+            int[] cordarray = new int[2] { 0, 0 };
+            for (int row = 0; row < MapArray.GetLength(0); row++)
+            {
+                for (int columb = 0; columb < MapArray.GetLength(1); columb++)
+                {
+                    foreach (Location locals in Locations)
+                    {
+                        if (locals.Coordinates.SequenceEqual(cordarray))
+                        {
+                            Canvas.SetBBScaledPixel(row, columb, Color.Red);
+                        }
+                    }
+                    
+                    cordarray[1]++;
+                }
+                cordarray[1] = 0;
+                cordarray[0]++;
+            }
         }
     }
 }
