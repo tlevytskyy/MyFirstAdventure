@@ -183,7 +183,7 @@ namespace Engine
             }
             else if (Class == IDClass.WARRIOR)
             {
-                Strength = 10 + 3 * Level;
+                Strength = 20 + 3 * (Level - 5);
             }
             else if (Class == IDClass.ROGUE)
             {
@@ -208,7 +208,7 @@ namespace Engine
             }
             else if (Class == IDClass.ROGUE)
             {
-                Dexterity = 10 + 3 * Level;
+                Dexterity = 20 + 3 * (Level - 5);
             }
             else if (Class == IDClass.MAGE)
             {
@@ -234,7 +234,7 @@ namespace Engine
             }
             else if (Class == IDClass.MAGE)
             {
-                Intelligence = 10 + 3 * Level;
+                Intelligence = 20 + 3 * (Level - 5);
             }
 
         }
@@ -247,8 +247,9 @@ namespace Engine
                 UpdateDexterity();
                 UpdateIntelligence();
                 StatLevel = Level;
-
+               
             }
         }
+        
     }
 }
