@@ -29,7 +29,6 @@ namespace Engine
             QuestAvailableHere = questavailablehere;
             MonsterLivingHere = monsterlivinghere;
 
-
         }
     }
 }

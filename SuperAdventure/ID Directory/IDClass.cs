@@ -12,5 +12,7 @@ namespace ID_Directory
         public const int WARRIOR = 1;
         public const int ROGUE = 2;
         public const int MAGE = 3;
+
+        
     }
 }
