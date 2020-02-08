@@ -26,11 +26,8 @@ namespace SuperAdventure
             MoveTo(World.LocationByCords(IDLocation.HOME1));
             _player.Inventory.Add(new InventoryItem(World.ItemByID(IDWeapon.RUSTY_SWORD), 1));
 
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-            lblGold.Text = _player.Gold.ToString();
-            lblExperience.Text = _player.ExperiencePoints.ToString();
-            lblLevel.Text = _player.Level.ToString();
-
+            UpdateStatDisplay();
+            
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
@@ -336,9 +333,13 @@ namespace SuperAdventure
 
                 // Give player experience points for killing the monster
                 _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
-                _player.UpdateAllStats();
                 rtbMessages.Text += "You receive " + _currentMonster.RewardExperiencePoints.ToString() + " experience points" + Environment.NewLine;
                 ScrollToBottomOfMessages();
+
+                //update player stats
+                UpdatePlayerClass();
+                _player.UpdateAllStats();
+                UpdateStatDisplay();
 
                 // Give player gold for killing the monster 
                 _player.Gold += _currentMonster.RewardGold;
@@ -387,10 +388,7 @@ namespace SuperAdventure
                 }
 
                 // Refresh player information and inventory controls
-                lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-                lblGold.Text = _player.Gold.ToString();
-                lblExperience.Text = _player.ExperiencePoints.ToString();
-                lblLevel.Text = _player.Level.ToString();
+                UpdateStatDisplay();
 
                 UpdateInventoryListInUI();
                 UpdateWeaponListInUI();
@@ -492,6 +490,69 @@ namespace SuperAdventure
             rtbMessages.SelectionStart = rtbMessages.Text.Length;
             rtbMessages.ScrollToCaret();
            
+        }
+
+        private void UpdateStatDisplay()
+        {
+            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+            lblGold.Text = _player.Gold.ToString();
+            lblExperience.Text = _player.ExperiencePoints.ToString();
+            lblLevel.Text = _player.Level.ToString();
+            lblStrength.Text = _player.Strength.ToString();
+            lblDexterity.Text = _player.Dexterity.ToString();
+            lblIntelligence.Text = _player.Intelligence.ToString();
+        }
+        private void UpdatePlayerClass()
+        {
+            if (_player.Class == IDClass.COMMONER && _player.Level >= 5)
+            {
+                lblChooseClass.Visible = true;
+                btnClassMage.Visible = true;
+                btnClassRogue.Visible = true;
+                btnClassWarrior.Visible = true;
+            }
+        }
+
+        private void btnClassWarrior_Click(object sender, EventArgs e)
+        {
+            _player.Class = IDClass.WARRIOR;
+            _player.UpdateMaxHP();
+            _player.UpdateStrength();
+            _player.UpdateDexterity();
+            _player.UpdateIntelligence();
+            UpdateStatDisplay();
+            btnClassMage.Visible = false;
+            btnClassRogue.Visible = false;
+            btnClassWarrior.Visible = false;
+            lblChooseClass.Visible = false;
+        }
+
+        private void btnClassRogue_Click(object sender, EventArgs e)
+        {
+            _player.Class = IDClass.ROGUE;
+            _player.UpdateMaxHP();
+            _player.UpdateStrength();
+            _player.UpdateDexterity();
+            _player.UpdateIntelligence();
+            UpdateStatDisplay();
+            btnClassMage.Visible = false;
+            btnClassRogue.Visible = false;
+            btnClassWarrior.Visible = false;
+            lblChooseClass.Visible = false;
+        }
+
+        private void btnClassMage_Click(object sender, EventArgs e)
+        {
+            _player.Class = IDClass.MAGE;
+            _player.UpdateMaxHP();
+            _player.UpdateStrength();
+            _player.UpdateDexterity();
+            _player.UpdateIntelligence();
+            UpdateStatDisplay();
+            btnClassMage.Visible = false;
+            btnClassRogue.Visible = false;
+            btnClassWarrior.Visible = false;
+            lblChooseClass.Visible = false;
         }
     }
 }

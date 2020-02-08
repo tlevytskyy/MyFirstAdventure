@@ -49,6 +49,16 @@
             this.rtbLocation = new System.Windows.Forms.RichTextBox();
             this.dgvQuests = new System.Windows.Forms.DataGridView();
             this.dgvInventory = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblStrength = new System.Windows.Forms.Label();
+            this.lblDexterity = new System.Windows.Forms.Label();
+            this.lblIntelligence = new System.Windows.Forms.Label();
+            this.lblChooseClass = new System.Windows.Forms.Label();
+            this.btnClassWarrior = new System.Windows.Forms.Button();
+            this.btnClassRogue = new System.Windows.Forms.Button();
+            this.btnClassMage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +98,6 @@
             this.label4.Size = new System.Drawing.Size(46, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "Level:";
-            //this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // lblHitPoints
             // 
@@ -261,11 +270,115 @@
             this.dgvInventory.Size = new System.Drawing.Size(312, 309);
             this.dgvInventory.TabIndex = 20;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(190, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(66, 17);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Strength:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(190, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 17);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Dexterity:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(190, 74);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 17);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Intelligence:";
+            // 
+            // lblStrength
+            // 
+            this.lblStrength.AutoSize = true;
+            this.lblStrength.Location = new System.Drawing.Point(285, 20);
+            this.lblStrength.Name = "lblStrength";
+            this.lblStrength.Size = new System.Drawing.Size(0, 17);
+            this.lblStrength.TabIndex = 24;
+            // 
+            // lblDexterity
+            // 
+            this.lblDexterity.AutoSize = true;
+            this.lblDexterity.Location = new System.Drawing.Point(285, 46);
+            this.lblDexterity.Name = "lblDexterity";
+            this.lblDexterity.Size = new System.Drawing.Size(0, 17);
+            this.lblDexterity.TabIndex = 25;
+            // 
+            // lblIntelligence
+            // 
+            this.lblIntelligence.AutoSize = true;
+            this.lblIntelligence.Location = new System.Drawing.Point(285, 74);
+            this.lblIntelligence.Name = "lblIntelligence";
+            this.lblIntelligence.Size = new System.Drawing.Size(0, 17);
+            this.lblIntelligence.TabIndex = 26;
+            // 
+            // lblChooseClass
+            // 
+            this.lblChooseClass.AutoSize = true;
+            this.lblChooseClass.Location = new System.Drawing.Point(366, 93);
+            this.lblChooseClass.Name = "lblChooseClass";
+            this.lblChooseClass.Size = new System.Drawing.Size(98, 17);
+            this.lblChooseClass.TabIndex = 27;
+            this.lblChooseClass.Text = "Choose Class:";
+            this.lblChooseClass.Visible = false;
+            // 
+            // btnClassWarrior
+            // 
+            this.btnClassWarrior.Location = new System.Drawing.Point(470, 93);
+            this.btnClassWarrior.Name = "btnClassWarrior";
+            this.btnClassWarrior.Size = new System.Drawing.Size(75, 23);
+            this.btnClassWarrior.TabIndex = 28;
+            this.btnClassWarrior.Text = "Warrior";
+            this.btnClassWarrior.UseVisualStyleBackColor = true;
+            this.btnClassWarrior.Visible = false;
+            this.btnClassWarrior.Click += new System.EventHandler(this.btnClassWarrior_Click);
+            // 
+            // btnClassRogue
+            // 
+            this.btnClassRogue.Location = new System.Drawing.Point(551, 94);
+            this.btnClassRogue.Name = "btnClassRogue";
+            this.btnClassRogue.Size = new System.Drawing.Size(75, 23);
+            this.btnClassRogue.TabIndex = 29;
+            this.btnClassRogue.Text = "Rogue";
+            this.btnClassRogue.UseVisualStyleBackColor = true;
+            this.btnClassRogue.Visible = false;
+            this.btnClassRogue.Click += new System.EventHandler(this.btnClassRogue_Click);
+            // 
+            // btnClassMage
+            // 
+            this.btnClassMage.Location = new System.Drawing.Point(633, 92);
+            this.btnClassMage.Name = "btnClassMage";
+            this.btnClassMage.Size = new System.Drawing.Size(75, 23);
+            this.btnClassMage.TabIndex = 30;
+            this.btnClassMage.Text = "Mage";
+            this.btnClassMage.UseVisualStyleBackColor = true;
+            this.btnClassMage.Visible = false;
+            this.btnClassMage.Click += new System.EventHandler(this.btnClassMage_Click);
+            // 
             // SuperAdventure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 643);
+            this.Controls.Add(this.btnClassMage);
+            this.Controls.Add(this.btnClassRogue);
+            this.Controls.Add(this.btnClassWarrior);
+            this.Controls.Add(this.lblChooseClass);
+            this.Controls.Add(this.lblIntelligence);
+            this.Controls.Add(this.lblDexterity);
+            this.Controls.Add(this.lblStrength);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.dgvInventory);
             this.Controls.Add(this.dgvQuests);
             this.Controls.Add(this.rtbLocation);
@@ -319,6 +432,16 @@
         private System.Windows.Forms.RichTextBox rtbLocation;
         private System.Windows.Forms.DataGridView dgvQuests;
         private System.Windows.Forms.DataGridView dgvInventory;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblStrength;
+        private System.Windows.Forms.Label lblDexterity;
+        private System.Windows.Forms.Label lblIntelligence;
+        public System.Windows.Forms.Label lblChooseClass;
+        public System.Windows.Forms.Button btnClassWarrior;
+        protected System.Windows.Forms.Button btnClassRogue;
+        public System.Windows.Forms.Button btnClassMage;
     }
 }
 

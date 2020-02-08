@@ -24,6 +24,7 @@ namespace Engine
             PopulateQuests();
             PopulateLocations();
             PopulateMapArray();
+            PopulateLocations2();
             DrawMapArray();
         }
         
@@ -43,15 +44,15 @@ namespace Engine
 
         private static void PopulateMonsters()
         {
-            Monster rat = new Monster(IDMonster.RAT, "Rat", 5, 3, 10, 3, 3, IDDamageType.SLASH);
+            Monster rat = new Monster(IDMonster.RAT, "Rat", 5, 30, 10, 3, 3, IDDamageType.SLASH);
             rat.LootTable.Add(new LootItem(ItemByID(IDItem.RAT_TAIL), 75, false));
             rat.LootTable.Add(new LootItem(ItemByID(IDItem.PIECE_OF_FUR), 75, true));
 
-            Monster snake = new Monster(IDMonster.SNAKE, "Snake", 5, 3, 10, 3, 3, IDDamageType.CRUSH);
+            Monster snake = new Monster(IDMonster.SNAKE, "Snake", 5, 30, 10, 3, 3, IDDamageType.CRUSH);
             snake.LootTable.Add(new LootItem(ItemByID(IDItem.SNAKE_FANG), 75, false));
             snake.LootTable.Add(new LootItem(ItemByID(IDItem.SNAKESKIN), 75, true));
 
-            Monster giantSpider = new Monster(IDMonster.GIANT_SPIDER, "Giant spider", 20, 5, 40, 10, 10, IDDamageType.PIERCE);
+            Monster giantSpider = new Monster(IDMonster.GIANT_SPIDER, "Giant spider", 20, 50, 40, 10, 10, IDDamageType.PIERCE);
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_SILK), 25, false));
 
@@ -111,32 +112,6 @@ namespace Engine
 
             Location spiderField = new Location(IDLocation.SPIDER_FIELD1, "Forest", "You see spider webs covering covering the trees in this forest.");
             spiderField.MonsterLivingHere = MonsterByID(IDMonster.GIANT_SPIDER);
-
-            // Link the locations together
-            home.LocationToNorth = townSquare;
-
-            townSquare.LocationToNorth = alchemistHut;
-            townSquare.LocationToSouth = home;
-            townSquare.LocationToEast = guardPost;
-            townSquare.LocationToWest = farmhouse;
-
-            farmhouse.LocationToEast = townSquare;
-            farmhouse.LocationToWest = farmersField;
-
-            farmersField.LocationToEast = farmhouse;
-
-            alchemistHut.LocationToSouth = townSquare;
-            alchemistHut.LocationToNorth = alchemistsGarden;
-
-            alchemistsGarden.LocationToSouth = alchemistHut;
-
-            guardPost.LocationToEast = bridge;
-            guardPost.LocationToWest = townSquare;
-
-            bridge.LocationToWest = guardPost;
-            bridge.LocationToEast = spiderField;
-
-            spiderField.LocationToWest = bridge;
 
             // Add the locations to the static list
             Locations.Add(home);
@@ -252,6 +227,30 @@ namespace Engine
                 }
                 cordarray[1] = 0;
                 cordarray[0]++;
+            }
+        }
+
+        private static void PopulateLocations2()
+        {
+            foreach (Location local in Locations)
+            {
+                if (MapArray[local.Coordinates[0], local.Coordinates[1] - 1] != null)
+                {
+                    local.LocationToNorth = MapArray[local.Coordinates[0], local.Coordinates[1] - 1];
+                }
+                if (MapArray[local.Coordinates[0], local.Coordinates[1] + 1] != null)
+                {
+                    local.LocationToSouth = MapArray[local.Coordinates[0], local.Coordinates[1] + 1];
+                }
+                if (MapArray[local.Coordinates[0] + 1, local.Coordinates[1]] != null)
+                {
+                    local.LocationToEast = MapArray[local.Coordinates[0] + 1, local.Coordinates[1]];
+                }
+                if (MapArray[local.Coordinates[0] - 1, local.Coordinates[1]] != null)
+                {
+                    local.LocationToWest = MapArray[local.Coordinates[0] - 1, local.Coordinates[1]];
+                }
+
             }
         }
     }
