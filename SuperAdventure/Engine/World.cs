@@ -234,24 +234,41 @@ namespace Engine
         {
             foreach (Location local in Locations)
             {
-                if (MapArray[local.Coordinates[0], local.Coordinates[1] - 1] != null)
+
+                if ( local.Coordinates[1] != 0)
                 {
-                    local.LocationToNorth = MapArray[local.Coordinates[0], local.Coordinates[1] - 1];
-                }
-                if (MapArray[local.Coordinates[0], local.Coordinates[1] + 1] != null)
-                {
-                    local.LocationToSouth = MapArray[local.Coordinates[0], local.Coordinates[1] + 1];
-                }
-                if (MapArray[local.Coordinates[0] + 1, local.Coordinates[1]] != null)
-                {
-                    local.LocationToEast = MapArray[local.Coordinates[0] + 1, local.Coordinates[1]];
-                }
-                if (MapArray[local.Coordinates[0] - 1, local.Coordinates[1]] != null)
-                {
-                    local.LocationToWest = MapArray[local.Coordinates[0] - 1, local.Coordinates[1]];
+                    if (MapArray[local.Coordinates[0], local.Coordinates[1] - 1] != null)
+                    {
+                        local.LocationToNorth = MapArray[local.Coordinates[0], local.Coordinates[1] - 1];
+                    }
                 }
 
+                if (local.Coordinates[1] != MapArray.GetLength(1)-1)
+                {
+                    if (MapArray[local.Coordinates[0], local.Coordinates[1] + 1] != null)
+                    {
+                        local.LocationToSouth = MapArray[local.Coordinates[0], local.Coordinates[1] + 1];
+                    }
+                }
+
+                if(local.Coordinates[0] != MapArray.GetLength(0)-1)
+                {
+                    if (MapArray[local.Coordinates[0] + 1, local.Coordinates[1]] != null)
+                    {
+                        local.LocationToEast = MapArray[local.Coordinates[0] + 1, local.Coordinates[1]];
+                    }
+                }
+
+                if(local.Coordinates[0] != 0)
+                {
+                    if (MapArray[local.Coordinates[0] - 1, local.Coordinates[1]] != null)
+                    {
+                        local.LocationToWest = MapArray[local.Coordinates[0] - 1, local.Coordinates[1]];
+                    }
+                }
+ 
             }
+ 
         }
     }
 }

@@ -27,6 +27,7 @@ namespace SuperAdventure
             _player.Inventory.Add(new InventoryItem(World.ItemByID(IDWeapon.RUSTY_SWORD), 1));
 
             UpdateStatDisplay();
+
             
         }
 
