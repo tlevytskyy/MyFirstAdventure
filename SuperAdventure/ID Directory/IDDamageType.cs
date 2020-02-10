@@ -12,6 +12,7 @@ namespace ID_Directory
         public const int SLASH = 1;
         public const int PIERCE = 2;
         public const int CRUSH = 3;
-        
+        public const int FIRE = 4;
+        public const int THROW = 5;
     }
 }

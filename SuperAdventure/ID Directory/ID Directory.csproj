@@ -48,6 +48,7 @@
     <Compile Include="IDMonster.cs" />
     <Compile Include="IDPotion.cs" />
     <Compile Include="IDQuest.cs" />
+    <Compile Include="IDSkills.cs" />
     <Compile Include="IDWeapon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

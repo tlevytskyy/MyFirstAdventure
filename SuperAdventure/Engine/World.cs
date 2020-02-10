@@ -16,6 +16,7 @@ namespace Engine
         public static readonly List<Monster> Monsters = new List<Monster>();
         public static readonly List<Quest> Quests = new List<Quest>();
         public static readonly List<Location> Locations = new List<Location>();
+        public static readonly List<Skills> Skills = new List<Skills>();
 
         static World()
         {
@@ -26,6 +27,7 @@ namespace Engine
             PopulateMapArray();
             PopulateLocations2();
             DrawMapArray();
+            PopulateSkills();
         }
         
         private static void PopulateItems()
@@ -52,7 +54,7 @@ namespace Engine
             snake.LootTable.Add(new LootItem(ItemByID(IDItem.SNAKE_FANG), 75, false));
             snake.LootTable.Add(new LootItem(ItemByID(IDItem.SNAKESKIN), 75, true));
 
-            Monster giantSpider = new Monster(IDMonster.GIANT_SPIDER, "Giant spider", 20, 50, 40, 10, 10, IDDamageType.PIERCE);
+            Monster giantSpider = new Monster(IDMonster.GIANT_SPIDER, "Giant spider", 20, 50, 40, 100, 100, IDDamageType.PIERCE);
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_SILK), 25, false));
 
@@ -125,57 +127,6 @@ namespace Engine
             Locations.Add(spiderField);
         }
 
-        public static Item ItemByID(int id)
-        {
-            foreach (Item item in Items)
-            {
-                if (item.ID == id)
-                {
-                    return item;
-                }
-            }
-
-            return null;
-        }
-
-        public static Monster MonsterByID(int id)
-        {
-            foreach (Monster monster in Monsters)
-            {
-                if (monster.ID == id)
-                {
-                    return monster;
-                }
-            }
-
-            return null;
-        }
-
-        public static Quest QuestByID(int id)
-        {
-            foreach (Quest quest in Quests)
-            {
-                if (quest.ID == id)
-                {
-                    return quest;
-                }
-            }
-
-            return null;
-        }
-
-        public static Location LocationByCords(int[] cords)
-        {
-            foreach (Location location in Locations)
-            {
-                if (location.Coordinates.SequenceEqual(cords))
-                {
-                    return location;
-                }
-            }
-
-            return null;
-        }
         public static void PopulateMapArray()
         {
           
@@ -269,6 +220,78 @@ namespace Engine
  
             }
  
+        }
+        private static void PopulateSkills()
+        {
+            Skills.Add(new Skills(IDSkills.WARRIOR_HEROIC_STRIKE, "Heroic Strike", 12, 18, 3, IDDamageType.SLASH));
+            Skills.Add(new Skills(IDSkills.COMMONER_KICK, "Kick", 4, 6, true, 3, 4, IDDamageType.CRUSH));
+            Skills.Add(new Skills(IDSkills.ROGUE_RAPID_STABS, "Rapid Stabs", 4, 6, 3, 3, IDDamageType.PIERCE));
+            Skills.Add(new Skills(IDSkills.MAGE_FIREBALL, "Fireball", 8, 12, 3, 4, 4,IDDamageType.FIRE));
+        }
+
+        public static Item ItemByID(int id)
+        {
+            foreach (Item item in Items)
+            {
+                if (item.ID == id)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public static Monster MonsterByID(int id)
+        {
+            foreach (Monster monster in Monsters)
+            {
+                if (monster.ID == id)
+                {
+                    return monster;
+                }
+            }
+
+            return null;
+        }
+
+        public static Quest QuestByID(int id)
+        {
+            foreach (Quest quest in Quests)
+            {
+                if (quest.ID == id)
+                {
+                    return quest;
+                }
+            }
+
+            return null;
+        }
+
+        public static Skills SkillsByID(int id)
+        {
+            foreach (Skills skills in Skills)
+            {
+                if (skills.ID == id)
+                {
+                    return skills;
+                }
+            }
+
+            return null;
+        }
+
+        public static Location LocationByCords(int[] cords)
+        {
+            foreach (Location location in Locations)
+            {
+                if (location.Coordinates.SequenceEqual(cords))
+                {
+                    return location;
+                }
+            }
+
+            return null;
         }
     }
 }

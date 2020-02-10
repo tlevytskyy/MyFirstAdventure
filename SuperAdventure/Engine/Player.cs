@@ -24,10 +24,13 @@ namespace Engine
         public int Class;
         public int StatLevel = 1;
         public int BonusHP;
+        public int MaximumEnergy;
+        public int Energy;
 
         public Location CurrentLocation;
         public List<InventoryItem> Inventory;
         public List<PlayerQuest> Quests;
+        public List<Skills> Skills;
 
         public Player(int currentHitPoints, int maximumHitPoints, int gold, int experiencePoints)
         {
@@ -35,9 +38,13 @@ namespace Engine
             ExperiencePoints = experiencePoints;
             CurrentHitPoints = currentHitPoints;
             StatLevel = -1;
+            MaximumEnergy = 100;
+            Energy = 100;
             Class = IDClass.COMMONER;
             UpdateAllStats();
 
+            Skills = new List<Skills>();
+            Skills.Add(World.SkillsByID(IDSkills.COMMONER_KICK));
             Inventory = new List<InventoryItem>();
             Quests = new List<PlayerQuest>();
         }
