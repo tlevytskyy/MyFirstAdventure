@@ -70,8 +70,8 @@ namespace SuperAdventure
                 // Monster is still alive
                 MonsterDealsDamage();
             }
-            //regenate energy for rogue
-            RogueEnergyGeneration();
+            //End turn
+            EndTurn();
         }
 
         private void btnUseSkill_Click(object sender, EventArgs e)
@@ -79,32 +79,57 @@ namespace SuperAdventure
             // Get the currently selected skill from the cboSkills ComboBox
             Skills currentskill = (Skills)cboSkills.SelectedItem;
 
-            DealSkillDamage(currentskill);
+            foreach (Skills sk1 in _player.Skills)
+            {
+                if (currentskill.ID == sk1.ID)
+                {
+                    if (sk1.CurrentCoolDown == 0)
+                    {
+                        DealSkillDamage(currentskill);
 
-            //Apply Status Effects
-            if (currentskill.DotDuration > 0)
-            {
-                _currentMonster.DotDuration = currentskill.DotDuration;
-                _currentMonster.DotDamageTaken = currentskill.DotDamage;
-            }
-            else if (currentskill.Stun == true)
-            {
-                _currentMonster.StunDuration = currentskill.StunDuration;
+                        //Apply Status Effects
+                        if (currentskill.DotDuration > 0)
+                        {
+                            _currentMonster.DotDuration = currentskill.DotDuration;
+                            _currentMonster.DotDamageTaken = currentskill.DotDamage;
+                        }
+                        else if (currentskill.Stun == true)
+                        {
+                            _currentMonster.StunDuration = currentskill.StunDuration;
+                        }
+
+                        // Check if the monster is dead
+                        if (_currentMonster.CurrentHitPoints <= 0)
+                        {
+                            MonsterIsDead();
+                        }
+                        else
+                        {
+                            //monster deals damage
+                            MonsterDealsDamage();
+
+                        }
+                        //Set ability on cooldown
+                        foreach (Skills sk in _player.Skills)
+                        {
+                            if (sk.ID == currentskill.ID)
+                            {
+                                sk.CurrentCoolDown = sk.CoolDown + 1;
+                            }
+                        }
+
+                        EndTurn();
+
+                    }
+                    else
+                    {
+                        rtbMessages.Text += "This skill is on cooldown" + Environment.NewLine;
+                        ScrollToBottomOfMessages();
+                    }
+
+                }
             }
 
-            // Check if the monster is dead
-            if (_currentMonster.CurrentHitPoints <= 0)
-            {
-                MonsterIsDead();
-            }
-            else
-            {
-                //monster deals damage
-                MonsterDealsDamage();
-
-            }
-            //regenate energy for rogue
-            RogueEnergyGeneration();
         }
 
         private void MoveTo(Location newLocation)
@@ -240,19 +265,25 @@ namespace SuperAdventure
                     _currentMonster.LootTable.Add(lootItem);
                 }
 
+                dgvCoolDowns.Visible = true;
+                cboSkills.Visible = true;
                 cboWeapons.Visible = true;
                 cboPotions.Visible = true;
                 btnUseWeapon.Visible = true;
                 btnUsePotion.Visible = true;
+                btnUseSkill.Visible = true;
             }
             else
             {
                 _currentMonster = null;
 
+                dgvCoolDowns.Visible = false;
+                cboSkills.Visible = false;
                 cboWeapons.Visible = false;
                 cboPotions.Visible = false;
                 btnUseWeapon.Visible = false;
                 btnUsePotion.Visible = false;
+                btnUseSkill.Visible = false;
             }
 
             // Refresh player's inventory list
@@ -296,6 +327,7 @@ namespace SuperAdventure
             dgvQuests.Columns[0].Name = "Name";
             dgvQuests.Columns[0].Width = 197;
             dgvQuests.Columns[1].Name = "Done?";
+
 
             dgvQuests.Rows.Clear();
 
@@ -455,8 +487,7 @@ namespace SuperAdventure
             // Monster gets their turn to attack
             MonsterDealsDamage();
 
-            //regenerate energy for rogue
-            RogueEnergyGeneration();
+            EndTurn();
 
             //update inventory and potion lists
             UpdateInventoryListInUI();
@@ -610,6 +641,20 @@ namespace SuperAdventure
         {
             // Monster is still alive
 
+            //check if monster is taking dot damage
+            if (_currentMonster.DotDuration > 0)
+            {
+                _currentMonster.CurrentHitPoints -= _currentMonster.DotDamageTaken;
+                _currentMonster.DotDuration--;
+                rtbMessages.Text += "The monster takes " + _currentMonster.DotDamageTaken + " burn damage." + Environment.NewLine;
+                // Check if the monster is dead
+                if (_currentMonster.CurrentHitPoints <= 0)
+                {
+                    MonsterIsDead();
+                    return;
+                }
+            }
+
             //check if the monster is stunned
             if (_currentMonster.StunDuration > 0)
             {
@@ -619,18 +664,7 @@ namespace SuperAdventure
             }
             else
             {
-                //check if monster is taking dot damage
-                if (_currentMonster.DotDuration > 0)
-                {
-                    _currentMonster.CurrentHitPoints -= _currentMonster.DotDamageTaken;
-                    _currentMonster.DotDuration--;
-                    // Check if the monster is dead
-                    if (_currentMonster.CurrentHitPoints <= 0)
-                    {
-                        MonsterIsDead();
-                        return;
-                    }
-                }
+               
                 // Determine the amount of damage the monster does to the player
                 double damageToPlayer = RandomNumberGenerator.NumberBetween(0, _currentMonster.MaximumDamage);
 
@@ -709,9 +743,31 @@ namespace SuperAdventure
                 ScrollToBottomOfMessages();
             }
         }
-        
-        private void RogueEnergyGeneration()
+
+        private void EndTurn()
         {
+            foreach (Skills sk in _player.Skills)
+            {
+                if (sk.CurrentCoolDown != 0)
+                {
+                    sk.CurrentCoolDown--;
+                }
+            }
+
+            dgvCoolDowns.RowHeadersVisible = false;
+
+            dgvCoolDowns.ColumnCount = 2;
+            dgvCoolDowns.Columns[0].Name = "Skill";
+            dgvCoolDowns.Columns[0].Width = 70;
+            dgvCoolDowns.Columns[1].Name = "CD";
+            dgvCoolDowns.Columns[1].Width = 34;
+            dgvCoolDowns.Rows.Clear();
+
+            foreach (Skills playerskills in _player.Skills)
+            {
+                dgvCoolDowns.Rows.Add(new[] { playerskills.Name, playerskills.CurrentCoolDown.ToString() });
+            }
+
             if (_player.Class == IDClass.ROGUE)
             {
                 _player.Energy += 10;

@@ -13,6 +13,7 @@ namespace Engine
         public int MaximumDamage;
         public int MinimumDamage;
         public int CoolDown;
+        public int CurrentCoolDown;
         public int NumberOfAttacks = 1;
         public int DotDamage;
         public int DotDuration;
