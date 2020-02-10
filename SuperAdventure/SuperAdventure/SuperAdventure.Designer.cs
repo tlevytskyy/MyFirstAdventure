@@ -59,6 +59,10 @@
             this.btnClassWarrior = new System.Windows.Forms.Button();
             this.btnClassRogue = new System.Windows.Forms.Button();
             this.btnClassMage = new System.Windows.Forms.Button();
+            this.lblEnergyName = new System.Windows.Forms.Label();
+            this.lblEnergy = new System.Windows.Forms.Label();
+            this.cboSkills = new System.Windows.Forms.ComboBox();
+            this.btnUseSkill = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             this.SuspendLayout();
@@ -151,14 +155,14 @@
             // cboPotions
             // 
             this.cboPotions.FormattingEnabled = true;
-            this.cboPotions.Location = new System.Drawing.Point(369, 593);
+            this.cboPotions.Location = new System.Drawing.Point(369, 627);
             this.cboPotions.Name = "cboPotions";
             this.cboPotions.Size = new System.Drawing.Size(121, 24);
             this.cboPotions.TabIndex = 10;
             // 
             // btnUsePotion
             // 
-            this.btnUsePotion.Location = new System.Drawing.Point(620, 593);
+            this.btnUsePotion.Location = new System.Drawing.Point(620, 627);
             this.btnUsePotion.Name = "btnUsePotion";
             this.btnUsePotion.Size = new System.Drawing.Size(75, 23);
             this.btnUsePotion.TabIndex = 11;
@@ -212,7 +216,7 @@
             this.btnUseWeapon.Name = "btnUseWeapon";
             this.btnUseWeapon.Size = new System.Drawing.Size(75, 23);
             this.btnUseWeapon.TabIndex = 16;
-            this.btnUseWeapon.Text = "Use";
+            this.btnUseWeapon.Text = "Attack";
             this.btnUseWeapon.UseVisualStyleBackColor = true;
             this.btnUseWeapon.Click += new System.EventHandler(this.btnUseWeapon_Click);
             // 
@@ -249,7 +253,7 @@
             this.dgvQuests.RowHeadersVisible = false;
             this.dgvQuests.RowHeadersWidth = 51;
             this.dgvQuests.RowTemplate.Height = 24;
-            this.dgvQuests.Size = new System.Drawing.Size(312, 189);
+            this.dgvQuests.Size = new System.Drawing.Size(312, 214);
             this.dgvQuests.TabIndex = 19;
             // 
             // dgvInventory
@@ -364,11 +368,51 @@
             this.btnClassMage.Visible = false;
             this.btnClassMage.Click += new System.EventHandler(this.btnClassMage_Click);
             // 
+            // lblEnergyName
+            // 
+            this.lblEnergyName.AutoSize = true;
+            this.lblEnergyName.Location = new System.Drawing.Point(190, 100);
+            this.lblEnergyName.Name = "lblEnergyName";
+            this.lblEnergyName.Size = new System.Drawing.Size(0, 17);
+            this.lblEnergyName.TabIndex = 31;
+            this.lblEnergyName.Visible = false;
+            // 
+            // lblEnergy
+            // 
+            this.lblEnergy.AutoSize = true;
+            this.lblEnergy.Location = new System.Drawing.Point(285, 100);
+            this.lblEnergy.Name = "lblEnergy";
+            this.lblEnergy.Size = new System.Drawing.Size(0, 17);
+            this.lblEnergy.TabIndex = 32;
+            this.lblEnergy.Visible = false;
+            // 
+            // cboSkills
+            // 
+            this.cboSkills.FormattingEnabled = true;
+            this.cboSkills.Location = new System.Drawing.Point(369, 593);
+            this.cboSkills.Name = "cboSkills";
+            this.cboSkills.Size = new System.Drawing.Size(121, 24);
+            this.cboSkills.TabIndex = 33;
+            // 
+            // btnUseSkill
+            // 
+            this.btnUseSkill.Location = new System.Drawing.Point(620, 593);
+            this.btnUseSkill.Name = "btnUseSkill";
+            this.btnUseSkill.Size = new System.Drawing.Size(75, 23);
+            this.btnUseSkill.TabIndex = 34;
+            this.btnUseSkill.Text = "Cast";
+            this.btnUseSkill.UseVisualStyleBackColor = true;
+            this.btnUseSkill.Click += new System.EventHandler(this.btnUseSkill_Click);
+            // 
             // SuperAdventure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 643);
+            this.ClientSize = new System.Drawing.Size(717, 668);
+            this.Controls.Add(this.btnUseSkill);
+            this.Controls.Add(this.cboSkills);
+            this.Controls.Add(this.lblEnergy);
+            this.Controls.Add(this.lblEnergyName);
             this.Controls.Add(this.btnClassMage);
             this.Controls.Add(this.btnClassRogue);
             this.Controls.Add(this.btnClassWarrior);
@@ -442,6 +486,10 @@
         public System.Windows.Forms.Button btnClassWarrior;
         protected System.Windows.Forms.Button btnClassRogue;
         public System.Windows.Forms.Button btnClassMage;
+        private System.Windows.Forms.Label lblEnergyName;
+        private System.Windows.Forms.Label lblEnergy;
+        private System.Windows.Forms.ComboBox cboSkills;
+        private System.Windows.Forms.Button btnUseSkill;
     }
 }
 

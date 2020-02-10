@@ -27,8 +27,10 @@ namespace SuperAdventure
             _player.Inventory.Add(new InventoryItem(World.ItemByID(IDWeapon.RUSTY_SWORD), 1));
 
             UpdateStatDisplay();
+            UpdateSkillsListInUI();
 
-            
+
+
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
@@ -49,6 +51,60 @@ namespace SuperAdventure
         private void btnWest_Click(object sender, EventArgs e)
         {
             MoveTo(_player.CurrentLocation.LocationToWest);
+        }
+
+        private void btnUseWeapon_Click(object sender, EventArgs e)
+        {
+            // Get the currently selected weapon from the cboWeapons ComboBox
+            Weapon currentWeapon = (Weapon)cboWeapons.SelectedItem;
+
+            DealWeaponDamage(currentWeapon);
+
+            // Check if the monster is dead
+            if (_currentMonster.CurrentHitPoints <= 0)
+            {
+                MonsterIsDead();
+            }
+            else
+            {
+                // Monster is still alive
+                MonsterDealsDamage();
+            }
+            //regenate energy for rogue
+            RogueEnergyGeneration();
+        }
+
+        private void btnUseSkill_Click(object sender, EventArgs e)
+        {
+            // Get the currently selected skill from the cboSkills ComboBox
+            Skills currentskill = (Skills)cboSkills.SelectedItem;
+
+            DealSkillDamage(currentskill);
+
+            //Apply Status Effects
+            if (currentskill.DotDuration > 0)
+            {
+                _currentMonster.DotDuration = currentskill.DotDuration;
+                _currentMonster.DotDamageTaken = currentskill.DotDamage;
+            }
+            else if (currentskill.Stun == true)
+            {
+                _currentMonster.StunDuration = currentskill.StunDuration;
+            }
+
+            // Check if the monster is dead
+            if (_currentMonster.CurrentHitPoints <= 0)
+            {
+                MonsterIsDead();
+            }
+            else
+            {
+                //monster deals damage
+                MonsterDealsDamage();
+
+            }
+            //regenate energy for rogue
+            RogueEnergyGeneration();
         }
 
         private void MoveTo(Location newLocation)
@@ -80,6 +136,17 @@ namespace SuperAdventure
 
             // Update Hit Points in UI
             lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+
+            // Update Mana for Mages
+            if (_player.Class == IDClass.MAGE)
+            {
+                _player.Energy += 20;
+                if (_player.Energy > _player.MaximumEnergy)
+                {
+                    _player.Energy = _player.MaximumEnergy;
+                }
+                UpdateStatDisplay();
+            }
 
             // Does the location have a quest?
             if (newLocation.QuestAvailableHere != null)
@@ -156,8 +223,7 @@ namespace SuperAdventure
                     _player.Quests.Add(new PlayerQuest(newLocation.QuestAvailableHere));
                 }
             }
-
-            // Does the location have a monster?
+                 // Does the location have a monster?
             if (newLocation.MonsterLivingHere != null)
             {
                 rtbMessages.Text += "You see a " + newLocation.MonsterLivingHere.Name + Environment.NewLine;
@@ -301,132 +367,60 @@ namespace SuperAdventure
             }
         }
 
-        private void btnUseWeapon_Click(object sender, EventArgs e)
+        private void UpdateSkillsListInUI()
         {
-            // Get the currently selected weapon from the cboWeapons ComboBox
-            Weapon currentWeapon = (Weapon)cboWeapons.SelectedItem;
+            //Update skill combobox
+            List<Skills> skills = new List<Skills>();
 
-            // Determine the amount of damage to do to the monster
-            double damageToMonster = RandomNumberGenerator.NumberBetween(currentWeapon.MinimumDamage, currentWeapon.MaximumDamage) * (0.1 * _player.Strength);
-
-            //Determine weather this monster is weak to the weapon used.
-            if (Monster.IsWeakTo(_currentMonster.Weakness, currentWeapon.DamageType))
+            foreach (Skills skills1 in _player.Skills)
             {
-                damageToMonster = damageToMonster * 1.25;
-                rtbMessages.Text += "Its super effective." + Environment.NewLine;
-                ScrollToBottomOfMessages();
+                skills.Add((Skills)skills1);
             }
-            
-            // Apply the damage to the monster's CurrentHitPoints
-            _currentMonster.CurrentHitPoints -= damageToMonster;
-
-            // Display message
-            rtbMessages.Text += "You hit the " + _currentMonster.Name + " for " + damageToMonster.ToString("F0") + " points." + Environment.NewLine;
-            ScrollToBottomOfMessages();
-
-            // Check if the monster is dead
-            if (_currentMonster.CurrentHitPoints <= 0)
+            if (skills.Count == 0)
             {
-                // Monster is dead
-                rtbMessages.Text += Environment.NewLine;
-                rtbMessages.Text += "You defeated the " + _currentMonster.Name + Environment.NewLine;
-                ScrollToBottomOfMessages();
-
-                // Give player experience points for killing the monster
-                _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
-                rtbMessages.Text += "You receive " + _currentMonster.RewardExperiencePoints.ToString() + " experience points" + Environment.NewLine;
-                ScrollToBottomOfMessages();
-
-                //update player stats
-                UpdatePlayerClass();
-                _player.UpdateAllStats();
-                UpdateStatDisplay();
-
-                // Give player gold for killing the monster 
-                _player.Gold += _currentMonster.RewardGold;
-                rtbMessages.Text += "You receive " + _currentMonster.RewardGold.ToString() + " gold" + Environment.NewLine;
-                ScrollToBottomOfMessages();
-
-                // Get random loot items from the monster
-                List<InventoryItem> lootedItems = new List<InventoryItem>();
-
-                // Add items to the lootedItems list, comparing a random number to the drop percentage
-                foreach (LootItem lootItem in _currentMonster.LootTable)
-                {
-                    if (RandomNumberGenerator.NumberBetween(1, 100) <= lootItem.DropPercentage)
-                    {
-                        lootedItems.Add(new InventoryItem(lootItem.Details, 1));
-                    }
-                }
-
-                // If no items were randomly selected, then add the default loot item(s).
-                if (lootedItems.Count == 0)
-                {
-                    foreach (LootItem lootItem in _currentMonster.LootTable)
-                    {
-                        if (lootItem.IsDefaultItem)
-                        {
-                            lootedItems.Add(new InventoryItem(lootItem.Details, 1));
-                        }
-                    }
-                }
-
-                // Add the looted items to the player's inventory
-                foreach (InventoryItem inventoryItem in lootedItems)
-                {
-                    _player.AddItemToInventory(inventoryItem.Details);
-
-                    if (inventoryItem.Quantity == 1)
-                    {
-                        rtbMessages.Text += "You loot " + inventoryItem.Quantity.ToString() + " " + inventoryItem.Details.Name + Environment.NewLine;
-                        ScrollToBottomOfMessages();
-                    }
-                    else
-                    {
-                        rtbMessages.Text += "You loot " + inventoryItem.Quantity.ToString() + " " + inventoryItem.Details.NamePlural + Environment.NewLine;
-                        ScrollToBottomOfMessages();
-                    }
-                }
-
-                // Refresh player information and inventory controls
-                UpdateStatDisplay();
-
-                UpdateInventoryListInUI();
-                UpdateWeaponListInUI();
-                UpdatePotionListInUI();
-
-                // Add a blank line to the messages box, just for appearance.
-                rtbMessages.Text += Environment.NewLine;
-                ScrollToBottomOfMessages();
-
-                // Move player to current location (to heal player and create a new monster to fight)
-                MoveTo(_player.CurrentLocation);
+                cboSkills.Visible = false;
+                btnUseSkill.Visible = false;
             }
             else
             {
-                // Monster is still alive
+                cboSkills.DataSource = skills;
+                cboSkills.DisplayMember = "Name";
+                cboSkills.ValueMember = "ID";
 
-                // Determine the amount of damage the monster does to the player
-                double damageToPlayer = RandomNumberGenerator.NumberBetween(0, _currentMonster.MaximumDamage);
+                cboSkills.SelectedIndex = 0;
+            }
 
-                // Display message
-                rtbMessages.Text += "The " + _currentMonster.Name + " did " + damageToPlayer.ToString() + " points of damage." + Environment.NewLine;
-                ScrollToBottomOfMessages();
+            //foreach (Skills skills in _player.Skills)
+            //{
 
-                // Subtract damage from player
-                _player.CurrentHitPoints -= damageToPlayer;
+            //    cboSkills.Items.Add(skills);
+            //    cboSkills.DisplayMember = "Name";
+            //    cboSkills.ValueMember = "ID";
+            //    cboSkills.SelectedIndex = 0;
+            //}
 
-                // Refresh player data in UI
-                lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+        }
 
-                if (_player.CurrentHitPoints <= 0)
-                {
-                    // Display message
-                    rtbMessages.Text += "The " + _currentMonster.Name + " killed you." + Environment.NewLine;
+        private void UpdateStatDisplay()
+        {
+            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+            lblGold.Text = _player.Gold.ToString();
+            lblExperience.Text = _player.ExperiencePoints.ToString();
+            lblLevel.Text = _player.Level.ToString();
+            lblStrength.Text = _player.Strength.ToString();
+            lblDexterity.Text = _player.Dexterity.ToString();
+            lblIntelligence.Text = _player.Intelligence.ToString();
+            lblEnergy.Text = _player.Energy.ToString();
+        }
 
-                    // Move player to "Home"
-                    MoveTo(World.LocationByCords(IDLocation.HOME1));
-                }
+        private void UpdatePlayerClass()
+        {
+            if (_player.Class == IDClass.COMMONER && _player.Level >= 5)
+            {
+                lblChooseClass.Visible = true;
+                btnClassMage.Visible = true;
+                btnClassRogue.Visible = true;
+                btnClassWarrior.Visible = true;
             }
         }
 
@@ -459,29 +453,12 @@ namespace SuperAdventure
             ScrollToBottomOfMessages();
 
             // Monster gets their turn to attack
+            MonsterDealsDamage();
 
-            // Determine the amount of damage the monster does to the player
-            double damageToPlayer = RandomNumberGenerator.NumberBetween(0, _currentMonster.MaximumDamage);
+            //regenerate energy for rogue
+            RogueEnergyGeneration();
 
-            // Display message
-            rtbMessages.Text += "The " + _currentMonster.Name + " did " + damageToPlayer.ToString() + " points of damage." + Environment.NewLine;
-            ScrollToBottomOfMessages();
-
-            // Subtract damage from player
-            _player.CurrentHitPoints -= damageToPlayer;
-
-            if (_player.CurrentHitPoints <= 0)
-            {
-                // Display message
-                rtbMessages.Text += "The " + _currentMonster.Name + " killed you." + Environment.NewLine;
-                ScrollToBottomOfMessages();
-
-                // Move player to "Home"
-                MoveTo(World.LocationByCords(IDLocation.HOME1));
-            }
-
-            // Refresh player data in UI
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+            //update inventory and potion lists
             UpdateInventoryListInUI();
             UpdatePotionListInUI();
         }
@@ -493,27 +470,6 @@ namespace SuperAdventure
            
         }
 
-        private void UpdateStatDisplay()
-        {
-            lblHitPoints.Text = _player.CurrentHitPoints.ToString();
-            lblGold.Text = _player.Gold.ToString();
-            lblExperience.Text = _player.ExperiencePoints.ToString();
-            lblLevel.Text = _player.Level.ToString();
-            lblStrength.Text = _player.Strength.ToString();
-            lblDexterity.Text = _player.Dexterity.ToString();
-            lblIntelligence.Text = _player.Intelligence.ToString();
-        }
-        private void UpdatePlayerClass()
-        {
-            if (_player.Class == IDClass.COMMONER && _player.Level >= 5)
-            {
-                lblChooseClass.Visible = true;
-                btnClassMage.Visible = true;
-                btnClassRogue.Visible = true;
-                btnClassWarrior.Visible = true;
-            }
-        }
-
         private void btnClassWarrior_Click(object sender, EventArgs e)
         {
             _player.Class = IDClass.WARRIOR;
@@ -522,10 +478,15 @@ namespace SuperAdventure
             _player.UpdateDexterity();
             _player.UpdateIntelligence();
             UpdateStatDisplay();
+            _player.Skills.Add(World.SkillsByID(IDSkills.WARRIOR_HEROIC_STRIKE));
+            UpdateSkillsListInUI();
             btnClassMage.Visible = false;
             btnClassRogue.Visible = false;
             btnClassWarrior.Visible = false;
             lblChooseClass.Visible = false;
+            lblEnergy.Visible = true;
+            lblEnergyName.Text = "Rage";
+            lblEnergyName.Visible = true;
         }
 
         private void btnClassRogue_Click(object sender, EventArgs e)
@@ -536,10 +497,15 @@ namespace SuperAdventure
             _player.UpdateDexterity();
             _player.UpdateIntelligence();
             UpdateStatDisplay();
+            _player.Skills.Add(World.SkillsByID(IDSkills.ROGUE_RAPID_STABS));
+            UpdateSkillsListInUI();
             btnClassMage.Visible = false;
             btnClassRogue.Visible = false;
             btnClassWarrior.Visible = false;
             lblChooseClass.Visible = false;
+            lblEnergy.Visible = true;
+            lblEnergyName.Text = "Energy";
+            lblEnergyName.Visible = true;
         }
 
         private void btnClassMage_Click(object sender, EventArgs e)
@@ -550,10 +516,212 @@ namespace SuperAdventure
             _player.UpdateDexterity();
             _player.UpdateIntelligence();
             UpdateStatDisplay();
+            _player.Skills.Add(World.SkillsByID(IDSkills.MAGE_FIREBALL));
+            UpdateSkillsListInUI();
             btnClassMage.Visible = false;
             btnClassRogue.Visible = false;
             btnClassWarrior.Visible = false;
             lblChooseClass.Visible = false;
+            lblEnergy.Visible = true;
+            lblEnergyName.Text = "Mana";
+            lblEnergyName.Visible = true;
+        }
+
+        private void MonsterIsDead()
+        {
+            // Monster is dead
+            rtbMessages.Text += Environment.NewLine;
+            rtbMessages.Text += "You defeated the " + _currentMonster.Name + Environment.NewLine;
+            ScrollToBottomOfMessages();
+
+            // Give player experience points for killing the monster
+            _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
+            rtbMessages.Text += "You receive " + _currentMonster.RewardExperiencePoints.ToString() + " experience points" + Environment.NewLine;
+            ScrollToBottomOfMessages();
+
+            //update player stats
+            UpdatePlayerClass();
+            _player.UpdateAllStats();
+            UpdateStatDisplay();
+
+            // Give player gold for killing the monster 
+            _player.Gold += _currentMonster.RewardGold;
+            rtbMessages.Text += "You receive " + _currentMonster.RewardGold.ToString() + " gold" + Environment.NewLine;
+            ScrollToBottomOfMessages();
+
+            // Get random loot items from the monster
+            List<InventoryItem> lootedItems = new List<InventoryItem>();
+
+            // Add items to the lootedItems list, comparing a random number to the drop percentage
+            foreach (LootItem lootItem in _currentMonster.LootTable)
+            {
+                if (RandomNumberGenerator.NumberBetween(1, 100) <= lootItem.DropPercentage)
+                {
+                    lootedItems.Add(new InventoryItem(lootItem.Details, 1));
+                }
+            }
+
+            // If no items were randomly selected, then add the default loot item(s).
+            if (lootedItems.Count == 0)
+            {
+                foreach (LootItem lootItem in _currentMonster.LootTable)
+                {
+                    if (lootItem.IsDefaultItem)
+                    {
+                        lootedItems.Add(new InventoryItem(lootItem.Details, 1));
+                    }
+                }
+            }
+
+            // Add the looted items to the player's inventory
+            foreach (InventoryItem inventoryItem in lootedItems)
+            {
+                _player.AddItemToInventory(inventoryItem.Details);
+
+                if (inventoryItem.Quantity == 1)
+                {
+                    rtbMessages.Text += "You loot " + inventoryItem.Quantity.ToString() + " " + inventoryItem.Details.Name + Environment.NewLine;
+                    ScrollToBottomOfMessages();
+                }
+                else
+                {
+                    rtbMessages.Text += "You loot " + inventoryItem.Quantity.ToString() + " " + inventoryItem.Details.NamePlural + Environment.NewLine;
+                    ScrollToBottomOfMessages();
+                }
+            }
+
+
+            // Refresh player information and inventory controls
+            UpdateStatDisplay();
+
+            UpdateInventoryListInUI();
+            UpdateWeaponListInUI();
+            UpdatePotionListInUI();
+
+            // Add a blank line to the messages box, just for appearance.
+            rtbMessages.Text += Environment.NewLine;
+            ScrollToBottomOfMessages();
+
+            // Move player to current location (to heal player and create a new monster to fight)
+            MoveTo(_player.CurrentLocation);
+        }
+
+        private void MonsterDealsDamage()
+        {
+            // Monster is still alive
+
+            //check if the monster is stunned
+            if (_currentMonster.StunDuration > 0)
+            {
+                //monster skps a turn / stun counter down by 1
+                rtbMessages.Text += "The monster is stunned." + Environment.NewLine;
+                _currentMonster.StunDuration--;
+            }
+            else
+            {
+                //check if monster is taking dot damage
+                if (_currentMonster.DotDuration > 0)
+                {
+                    _currentMonster.CurrentHitPoints -= _currentMonster.DotDamageTaken;
+                    _currentMonster.DotDuration--;
+                    // Check if the monster is dead
+                    if (_currentMonster.CurrentHitPoints <= 0)
+                    {
+                        MonsterIsDead();
+                        return;
+                    }
+                }
+                // Determine the amount of damage the monster does to the player
+                double damageToPlayer = RandomNumberGenerator.NumberBetween(0, _currentMonster.MaximumDamage);
+
+                // Display message
+                rtbMessages.Text += "The " + _currentMonster.Name + " did " + damageToPlayer.ToString() + " points of damage." + Environment.NewLine;
+                ScrollToBottomOfMessages();
+
+                // Subtract damage from player
+                _player.CurrentHitPoints -= damageToPlayer;
+
+                //Generate Rage for warriors
+                if (_player.Class == IDClass.WARRIOR)
+                {
+                    _player.Energy += Convert.ToInt32(damageToPlayer) * 10;
+                    if (_player.Energy > _player.MaximumEnergy)
+                    {
+                        _player.Energy = _player.MaximumEnergy;
+                    }
+                    UpdateStatDisplay();
+                }
+                // Refresh player data in UI
+                lblHitPoints.Text = _player.CurrentHitPoints.ToString();
+
+                if (_player.CurrentHitPoints <= 0)
+                {
+                    // Display message
+                    rtbMessages.Text += "The " + _currentMonster.Name + " killed you." + Environment.NewLine;
+
+                    // Move player to "Home"
+                    MoveTo(World.LocationByCords(IDLocation.HOME1));
+                }
+            }
+        }
+
+        private void DealWeaponDamage(Weapon currentweapon)
+        {
+            // Determine the amount of damage to do to the monster
+            double damageToMonster = RandomNumberGenerator.NumberBetween(currentweapon.MinimumDamage, currentweapon.MaximumDamage) * (0.1 * _player.Strength);
+
+            //Determine weather this monster is weak to the weapon used.
+            if (Monster.IsWeakTo(_currentMonster.Weakness, currentweapon.DamageType))
+            {
+                damageToMonster = damageToMonster * 1.25;
+                rtbMessages.Text += "Its super effective." + Environment.NewLine;
+                ScrollToBottomOfMessages();
+            }
+
+            // Apply the damage to the monster's CurrentHitPoints
+            _currentMonster.CurrentHitPoints -= damageToMonster;
+
+            // Display message
+            rtbMessages.Text += "You hit the " + _currentMonster.Name + " for " + damageToMonster.ToString("F0") + " points." + Environment.NewLine;
+            ScrollToBottomOfMessages();
+        }
+
+        private void DealSkillDamage(Skills currentskills)
+        {
+            for (int i = 0; i < currentskills.NumberOfAttacks; i++)
+            {
+                // Determine the amount of damage to do to the monster
+                double damageToMonster = RandomNumberGenerator.NumberBetween(currentskills.MinimumDamage, currentskills.MaximumDamage);
+
+                //Determine weather this monster is weak to the weapon used.
+                if (Monster.IsWeakTo(_currentMonster.Weakness, currentskills.DamageType))
+                {
+                    damageToMonster = damageToMonster * 1.25;
+                    rtbMessages.Text += "Its super effective." + Environment.NewLine;
+                    ScrollToBottomOfMessages();
+                }
+
+                // Apply the damage to the monster's CurrentHitPoints
+                _currentMonster.CurrentHitPoints -= damageToMonster;
+
+                // Display message
+                rtbMessages.Text += "You hit the " + _currentMonster.Name + " for " + damageToMonster.ToString("F0") + " points." + Environment.NewLine;
+                ScrollToBottomOfMessages();
+            }
+        }
+        
+        private void RogueEnergyGeneration()
+        {
+            if (_player.Class == IDClass.ROGUE)
+            {
+                _player.Energy += 10;
+                if (_player.Energy > _player.MaximumEnergy)
+                {
+                    _player.Energy = _player.MaximumEnergy;
+                }
+                UpdateStatDisplay();
+            }
         }
     }
+    
 }
