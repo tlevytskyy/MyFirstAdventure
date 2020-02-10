@@ -145,6 +145,9 @@ namespace SuperAdventure
             // Update the player's current location
             _player.CurrentLocation = newLocation;
 
+            // Draw the player's current location
+            World.DrawMapArray(_player.CurrentLocation);
+
             // Show/hide available movement buttons
             btnNorth.Visible = (newLocation.LocationToNorth != null);
             btnEast.Visible = (newLocation.LocationToEast != null);

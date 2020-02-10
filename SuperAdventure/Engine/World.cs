@@ -11,6 +11,7 @@ namespace Engine
 {
     public static class World
     {
+        public static CDrawer Canvas = new CDrawer(1000, 1000);
         public static readonly Location[,] MapArray = new Location[10, 10];
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<Monster> Monsters = new List<Monster>();
@@ -26,7 +27,6 @@ namespace Engine
             PopulateLocations();
             PopulateMapArray();
             PopulateLocations2();
-            DrawMapArray();
             PopulateSkills();
         }
         
@@ -115,6 +115,8 @@ namespace Engine
             Location spiderField = new Location(IDLocation.SPIDER_FIELD1, "Forest", "You see spider webs covering covering the trees in this forest.");
             spiderField.MonsterLivingHere = MonsterByID(IDMonster.GIANT_SPIDER);
 
+            Location farmhouse2 = new Location(IDLocation.FARMHOUSE2, "Farmhouse2", "Over here is a neighbouring farmhouse.");
+
             // Add the locations to the static list
             Locations.Add(home);
             Locations.Add(townSquare);
@@ -125,6 +127,7 @@ namespace Engine
             Locations.Add(farmersField);
             Locations.Add(bridge);
             Locations.Add(spiderField);
+            Locations.Add(farmhouse2);
         }
 
         public static void PopulateMapArray()
@@ -157,9 +160,9 @@ namespace Engine
             }
 
         }
-        public static void DrawMapArray()
+        public static void DrawMapArray(Location CurrentLocation)
         {
-            CDrawer Canvas = new CDrawer(500,500);
+            Canvas.Clear();
             Canvas.Scale = 50;
             int[] cordarray = new int[2] { 0, 0 };
             for (int row = 0; row < MapArray.GetLength(0); row++)
@@ -171,9 +174,14 @@ namespace Engine
                         if (locals.Coordinates.SequenceEqual(cordarray))
                         {
                             Canvas.SetBBScaledPixel(row, columb, Color.Red);
+                            Canvas.AddText(locals.Name, 5, row, columb, 1, 1, Color.White);
+                        }
+                        if (CurrentLocation.Coordinates.SequenceEqual(cordarray))
+                        {
+                            Canvas.SetBBScaledPixel(row, columb, Color.Green);
                         }
                     }
-                    
+
                     cordarray[1]++;
                 }
                 cordarray[1] = 0;

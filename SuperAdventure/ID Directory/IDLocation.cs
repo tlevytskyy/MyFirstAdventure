@@ -27,5 +27,6 @@ namespace ID_Directory
         public static int[] FARM_FIELD1 = new int[2] { 2, 8 };
         public static int[] BRIDGE1 = new int[2] { 6, 8 };
         public static int[] SPIDER_FIELD1 = new int[2] { 7, 8 };
+        public static int[] FARMHOUSE2 = new int[2] { 3, 7 };
     }
 }
