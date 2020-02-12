@@ -11,13 +11,15 @@ namespace Engine
 {
     public static class World
     {
-        public static CDrawer Canvas = new CDrawer(1000, 1000);
+        public static CDrawer MiniMap = new CDrawer(375, 375);
+        
         public static readonly Location[,] MapArray = new Location[10, 10];
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<Monster> Monsters = new List<Monster>();
         public static readonly List<Quest> Quests = new List<Quest>();
         public static readonly List<Location> Locations = new List<Location>();
         public static readonly List<Skills> Skills = new List<Skills>();
+        public static readonly List<Weapon> Weapons = new List<Weapon>();
 
         static World()
         {
@@ -28,6 +30,7 @@ namespace Engine
             PopulateMapArray();
             PopulateLocations2();
             PopulateSkills();
+            MiniMap.Scale = 75;
         }
         
         private static void PopulateItems()
@@ -42,6 +45,9 @@ namespace Engine
             Items.Add(new Item(IDItem.SPIDER_FANG, "Spider fang", "Spider fangs"));
             Items.Add(new Item(IDItem.SPIDER_SILK, "Spider silk", "Spider silks"));
             Items.Add(new Item(IDItem.ADVENTURER_PASS, "Adventurer pass", "Adventurer passes"));
+
+            Weapons.Add(new Weapon(IDWeapon.RUSTY_SWORD, "Rusty sword", "Rusty swords", 0, 5, IDDamageType.SLASH));
+            Weapons.Add(new Weapon(IDWeapon.CLUB, "Club", "Clubs", 3, 10, IDDamageType.CRUSH));
         }
 
         private static void PopulateMonsters()
@@ -160,8 +166,9 @@ namespace Engine
             }
 
         }
-        public static void DrawMapArray(Location CurrentLocation)
+        public static void DrawWorldMap(Location CurrentLocation)
         {
+            CDrawer Canvas = new CDrawer(1000, 1000);
             Canvas.Clear();
             Canvas.Scale = 50;
             int[] cordarray = new int[2] { 0, 0 };
@@ -174,7 +181,7 @@ namespace Engine
                         if (locals.Coordinates.SequenceEqual(cordarray))
                         {
                             Canvas.SetBBScaledPixel(row, columb, Color.Red);
-                            Canvas.AddText(locals.Name, 5, row, columb, 1, 1, Color.White);
+                            Canvas.AddText(locals.Name, 10, row, columb, 1, 1, Color.White);
                         }
                         if (CurrentLocation.Coordinates.SequenceEqual(cordarray))
                         {
@@ -185,6 +192,36 @@ namespace Engine
                     cordarray[1]++;
                 }
                 cordarray[1] = 0;
+                cordarray[0]++;
+            }
+        }
+        public static void UpdateMiniMap(Location CurrentLocation)
+        {
+            
+            MiniMap.Clear();
+            
+            int[] cordarray = new int[2] { CurrentLocation.Coordinates[0] - 2, CurrentLocation.Coordinates[1] - 2};
+            for (int row = 0; row < 5; row++)
+            {
+                for (int columb = 0; columb < 5; columb++)
+                { 
+                    foreach (Location locals in Locations)
+                    {
+                        if (locals.Coordinates.SequenceEqual(cordarray))
+                        {
+                            MiniMap.AddRectangle(row, columb, 1, 1, Color.Red);
+                            MiniMap.AddText(locals.Name, 10, row, columb, 1, 1, Color.White);
+                        }
+                        if (CurrentLocation.Coordinates.SequenceEqual(cordarray))
+                        {
+                            MiniMap.AddRectangle(row, columb, 1, 1, Color.Green);
+                            MiniMap.AddText(CurrentLocation.Name, 10, row, columb, 1, 1, Color.White);
+                        }
+                    }
+
+                    cordarray[1]++;
+                }
+                cordarray[1] = CurrentLocation.Coordinates[1] - 2;
                 cordarray[0]++;
             }
         }
@@ -231,15 +268,28 @@ namespace Engine
         }
         private static void PopulateSkills()
         {
-            Skills.Add(new Skills(IDSkills.WARRIOR_HEROIC_STRIKE, "Heroic Strike", 12, 18, 3, IDDamageType.SLASH));
-            Skills.Add(new Skills(IDSkills.COMMONER_KICK, "Kick", 4, 6, true, 3, 4, IDDamageType.CRUSH));
-            Skills.Add(new Skills(IDSkills.ROGUE_RAPID_STABS, "Rapid Stabs", 4, 6, 3, 3, IDDamageType.PIERCE));
-            Skills.Add(new Skills(IDSkills.MAGE_FIREBALL, "Fireball", 8, 12, 3, 4, 4,IDDamageType.FIRE));
+            Skills.Add(new Skills(IDSkills.WARRIOR_HEROIC_STRIKE, "Heroic Strike", 12, 18, 3, 30, IDDamageType.SLASH));
+            Skills.Add(new Skills(IDSkills.COMMONER_KICK, "Kick", 4, 6, true, 3, 4, 0, IDDamageType.CRUSH));
+            Skills.Add(new Skills(IDSkills.ROGUE_RAPID_STABS, "Rapid Stabs", 4, 6, 3, 3, 60, IDDamageType.PIERCE));
+            Skills.Add(new Skills(IDSkills.MAGE_FIREBALL, "Fireball", 8, 12, 3, 4, 4, 30, IDDamageType.FIRE));
         }
 
         public static Item ItemByID(int id)
         {
             foreach (Item item in Items)
+            {
+                if (item.ID == id)
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
+
+        public static Weapon WeaponByID(int id)
+        {
+            foreach (Weapon item in Weapons)
             {
                 if (item.ID == id)
                 {

@@ -1,0 +1,4 @@
+﻿2/12/20 : 9:04:59 AM - ----------------------------------------------------------------------
+2/12/20 : 9:04:59 AM - Drawer Started...
+2/12/20 : 9:06:47 AM - CDrawer::DrawerWindowSize : Thread was being aborted.
+2/12/20 : 9:07:28 AM - CDrawer::DrawerWindowSize : Thread was being aborted.

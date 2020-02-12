@@ -20,8 +20,9 @@ namespace Engine
         public bool Stun;
         public int StunDuration;
         public int DamageType;
+        public int EnergyCost;
 
-        public Skills(int id, string name, int maxdamage, int mindamage,int cooldown,int damagetype)
+        public Skills(int id, string name, int maxdamage, int mindamage, int cooldown, int energycost, int damagetype)
         {
             ID = id;
             Name = name;
@@ -29,9 +30,10 @@ namespace Engine
             MinimumDamage = mindamage;
             CoolDown = cooldown;
             DamageType = damagetype;
+            EnergyCost = energycost;
 
         }
-        public Skills(int id, string name, int maxdamage, int mindamage, int numberofattacks, int cooldown, int damagetype)
+        public Skills(int id, string name, int maxdamage, int mindamage, int numberofattacks, int cooldown, int energycost, int damagetype)
         {
             ID = id;
             Name = name;
@@ -40,8 +42,9 @@ namespace Engine
             NumberOfAttacks = numberofattacks;
             CoolDown = cooldown;
             DamageType = damagetype;
+            EnergyCost = energycost;
         }
-        public Skills(int id, string name, int maxdamage, int mindamage, int dotduration, int dotdamage, int cooldown, int damagetype)
+        public Skills(int id, string name, int maxdamage, int mindamage, int dotduration, int dotdamage, int cooldown, int energycost, int damagetype)
         {
             ID = id;
             Name = name;
@@ -51,8 +54,9 @@ namespace Engine
             DotDuration = dotduration;
             CoolDown = cooldown;
             DamageType = damagetype;
+            EnergyCost = energycost;
         }
-        public Skills(int id, string name, int maxdamage, int mindamage, bool stun, int stunduration, int cooldown, int damagetype)
+        public Skills(int id, string name, int maxdamage, int mindamage, bool stun, int stunduration, int cooldown, int energycost, int damagetype)
         {
             ID = id;
             Name = name;
@@ -62,6 +66,7 @@ namespace Engine
             StunDuration = stunduration;
             CoolDown = cooldown;
             DamageType = damagetype;
+            EnergyCost = energycost;
         }
     }
 }

@@ -83,8 +83,15 @@ namespace SuperAdventure
             {
                 if (currentskill.ID == sk1.ID)
                 {
-                    if (sk1.CurrentCoolDown == 0)
+                    if (currentskill.EnergyCost > _player.Energy)
                     {
+                        rtbMessages.Text += "You do not have enough energy to do that." + Environment.NewLine;
+                        ScrollToBottomOfMessages();
+                    }
+                    else if (sk1.CurrentCoolDown == 0)
+                    {
+
+                        _player.Energy -= currentskill.EnergyCost;
                         DealSkillDamage(currentskill);
 
                         //Apply Status Effects
@@ -146,7 +153,7 @@ namespace SuperAdventure
             _player.CurrentLocation = newLocation;
 
             // Draw the player's current location
-            World.DrawMapArray(_player.CurrentLocation);
+            World.UpdateMiniMap(_player.CurrentLocation);
 
             // Show/hide available movement buttons
             btnNorth.Visible = (newLocation.LocationToNorth != null);
@@ -780,6 +787,46 @@ namespace SuperAdventure
                 }
                 UpdateStatDisplay();
             }
+        }
+
+        private void dgvInventory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            InventoryItem item = _player.Inventory[e.RowIndex];
+            
+            Weapon weapon = World.WeaponByID(item.Details.ID);
+            if (weapon != null)
+            {
+                MessageBox.Show($"Name = {weapon.Name}     Quantity = {item.Quantity}\n" +
+                    $"Max Damage = {weapon.MaximumDamage}     Min Damage = {weapon.MinimumDamage} " +
+                    $"", "Item Information");
+            }
+            else
+            {
+                MessageBox.Show($"Name = {item.Details.Name}     Quantity = {item.Quantity}", "Item Information");
+            }
+           
+        }
+
+        private void dgvQuests_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            PlayerQuest quest = _player.Quests[e.RowIndex];
+            MessageBox.Show($"Quest Name = {quest.Details.Name}\nDetails = {quest.Details.Description}\n\n" +
+                $"Quest Comepleted = {quest.IsCompleted.ToString()}\n", "Quest Details");
+        }
+
+        private void btnMap_Click(object sender, EventArgs e)
+        {
+            World.DrawWorldMap(_player.CurrentLocation);
+        }
+
+        private void dgvCoolDowns_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Skills skill = _player.Skills[e.RowIndex];
+            MessageBox.Show($"Skill Name = {skill.Name}\nDamage = {skill.MinimumDamage} - {skill.MaximumDamage}" +
+                $"\nNumber of Attacks = {skill.NumberOfAttacks}" +
+                $"\n\nCooldown = {skill.CoolDown}\nStun Duration = {skill.StunDuration}\n" +
+                $"Dot Duration = {skill.DotDuration}    Dot Damage = {skill.DotDamage}", "Skill Details");
         }
     }
     

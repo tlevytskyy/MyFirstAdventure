@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,6 +65,8 @@
             this.cboSkills = new System.Windows.Forms.ComboBox();
             this.btnUseSkill = new System.Windows.Forms.Button();
             this.dgvCoolDowns = new System.Windows.Forms.DataGridView();
+            this.btnToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnMap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCoolDowns)).BeginInit();
@@ -148,6 +151,7 @@
             // 
             // cboWeapons
             // 
+            this.cboWeapons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWeapons.FormattingEnabled = true;
             this.cboWeapons.Location = new System.Drawing.Point(347, 558);
             this.cboWeapons.Name = "cboWeapons";
@@ -156,6 +160,7 @@
             // 
             // cboPotions
             // 
+            this.cboPotions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPotions.FormattingEnabled = true;
             this.cboPotions.Location = new System.Drawing.Point(347, 626);
             this.cboPotions.Name = "cboPotions";
@@ -169,6 +174,7 @@
             this.btnUsePotion.Size = new System.Drawing.Size(75, 23);
             this.btnUsePotion.TabIndex = 11;
             this.btnUsePotion.Text = "Use";
+            this.btnToolTip.SetToolTip(this.btnUsePotion, "Use the selected potion.");
             this.btnUsePotion.UseVisualStyleBackColor = true;
             this.btnUsePotion.Click += new System.EventHandler(this.btnUsePotion_Click);
             // 
@@ -179,6 +185,7 @@
             this.btnNorth.Size = new System.Drawing.Size(75, 23);
             this.btnNorth.TabIndex = 12;
             this.btnNorth.Text = "North";
+            this.btnToolTip.SetToolTip(this.btnNorth, "Travel north");
             this.btnNorth.UseVisualStyleBackColor = true;
             this.btnNorth.Click += new System.EventHandler(this.btnNorth_Click);
             // 
@@ -189,6 +196,7 @@
             this.btnEast.Size = new System.Drawing.Size(75, 23);
             this.btnEast.TabIndex = 13;
             this.btnEast.Text = "East";
+            this.btnToolTip.SetToolTip(this.btnEast, "Travel East");
             this.btnEast.UseVisualStyleBackColor = true;
             this.btnEast.Click += new System.EventHandler(this.btnEast_Click);
             // 
@@ -199,6 +207,7 @@
             this.btnSouth.Size = new System.Drawing.Size(75, 23);
             this.btnSouth.TabIndex = 14;
             this.btnSouth.Text = "South";
+            this.btnToolTip.SetToolTip(this.btnSouth, "Travel South");
             this.btnSouth.UseVisualStyleBackColor = true;
             this.btnSouth.Click += new System.EventHandler(this.btnSouth_Click);
             // 
@@ -209,6 +218,7 @@
             this.btnWest.Size = new System.Drawing.Size(75, 23);
             this.btnWest.TabIndex = 15;
             this.btnWest.Text = "West";
+            this.btnToolTip.SetToolTip(this.btnWest, "Travel West");
             this.btnWest.UseVisualStyleBackColor = true;
             this.btnWest.Click += new System.EventHandler(this.btnWest_Click);
             // 
@@ -219,6 +229,7 @@
             this.btnUseWeapon.Size = new System.Drawing.Size(75, 23);
             this.btnUseWeapon.TabIndex = 16;
             this.btnUseWeapon.Text = "Attack";
+            this.btnToolTip.SetToolTip(this.btnUseWeapon, "Attack with your weapon.");
             this.btnUseWeapon.UseVisualStyleBackColor = true;
             this.btnUseWeapon.Click += new System.EventHandler(this.btnUseWeapon_Click);
             // 
@@ -247,7 +258,6 @@
             this.dgvQuests.AllowUserToResizeRows = false;
             this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvQuests.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvQuests.Enabled = false;
             this.dgvQuests.Location = new System.Drawing.Point(16, 446);
             this.dgvQuests.MultiSelect = false;
             this.dgvQuests.Name = "dgvQuests";
@@ -257,6 +267,7 @@
             this.dgvQuests.RowTemplate.Height = 24;
             this.dgvQuests.Size = new System.Drawing.Size(312, 214);
             this.dgvQuests.TabIndex = 19;
+            this.dgvQuests.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvQuests_CellClick);
             // 
             // dgvInventory
             // 
@@ -265,8 +276,7 @@
             this.dgvInventory.AllowUserToResizeRows = false;
             this.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvInventory.Enabled = false;
-            this.dgvInventory.Location = new System.Drawing.Point(16, 130);
+            this.dgvInventory.Location = new System.Drawing.Point(16, 131);
             this.dgvInventory.MultiSelect = false;
             this.dgvInventory.Name = "dgvInventory";
             this.dgvInventory.ReadOnly = true;
@@ -275,6 +285,7 @@
             this.dgvInventory.RowTemplate.Height = 24;
             this.dgvInventory.Size = new System.Drawing.Size(312, 309);
             this.dgvInventory.TabIndex = 20;
+            this.dgvInventory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventory_CellContentClick);
             // 
             // label6
             // 
@@ -344,6 +355,7 @@
             this.btnClassWarrior.Size = new System.Drawing.Size(75, 23);
             this.btnClassWarrior.TabIndex = 28;
             this.btnClassWarrior.Text = "Warrior";
+            this.btnToolTip.SetToolTip(this.btnClassWarrior, "Become a Warrior.");
             this.btnClassWarrior.UseVisualStyleBackColor = true;
             this.btnClassWarrior.Visible = false;
             this.btnClassWarrior.Click += new System.EventHandler(this.btnClassWarrior_Click);
@@ -355,6 +367,7 @@
             this.btnClassRogue.Size = new System.Drawing.Size(75, 23);
             this.btnClassRogue.TabIndex = 29;
             this.btnClassRogue.Text = "Rogue";
+            this.btnToolTip.SetToolTip(this.btnClassRogue, "Become a Rogue.");
             this.btnClassRogue.UseVisualStyleBackColor = true;
             this.btnClassRogue.Visible = false;
             this.btnClassRogue.Click += new System.EventHandler(this.btnClassRogue_Click);
@@ -366,6 +379,7 @@
             this.btnClassMage.Size = new System.Drawing.Size(75, 23);
             this.btnClassMage.TabIndex = 30;
             this.btnClassMage.Text = "Mage";
+            this.btnToolTip.SetToolTip(this.btnClassMage, "Become a Mage.");
             this.btnClassMage.UseVisualStyleBackColor = true;
             this.btnClassMage.Visible = false;
             this.btnClassMage.Click += new System.EventHandler(this.btnClassMage_Click);
@@ -390,6 +404,7 @@
             // 
             // cboSkills
             // 
+            this.cboSkills.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSkills.FormattingEnabled = true;
             this.cboSkills.Location = new System.Drawing.Point(347, 592);
             this.cboSkills.Name = "cboSkills";
@@ -403,6 +418,7 @@
             this.btnUseSkill.Size = new System.Drawing.Size(75, 23);
             this.btnUseSkill.TabIndex = 34;
             this.btnUseSkill.Text = "Cast";
+            this.btnToolTip.SetToolTip(this.btnUseSkill, "Cast the selected spell.");
             this.btnUseSkill.UseVisualStyleBackColor = true;
             this.btnUseSkill.Click += new System.EventHandler(this.btnUseSkill_Click);
             // 
@@ -422,12 +438,24 @@
             this.dgvCoolDowns.RowTemplate.Height = 24;
             this.dgvCoolDowns.Size = new System.Drawing.Size(141, 111);
             this.dgvCoolDowns.TabIndex = 35;
+            this.dgvCoolDowns.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCoolDowns_CellContentClick);
+            // 
+            // btnMap
+            // 
+            this.btnMap.Location = new System.Drawing.Point(494, 458);
+            this.btnMap.Name = "btnMap";
+            this.btnMap.Size = new System.Drawing.Size(75, 23);
+            this.btnMap.TabIndex = 36;
+            this.btnMap.Text = "Map";
+            this.btnMap.UseVisualStyleBackColor = true;
+            this.btnMap.Click += new System.EventHandler(this.btnMap_Click);
             // 
             // SuperAdventure
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 668);
+            this.Controls.Add(this.btnMap);
             this.Controls.Add(this.dgvCoolDowns);
             this.Controls.Add(this.btnUseSkill);
             this.Controls.Add(this.cboSkills);
@@ -512,6 +540,8 @@
         private System.Windows.Forms.ComboBox cboSkills;
         private System.Windows.Forms.Button btnUseSkill;
         private System.Windows.Forms.DataGridView dgvCoolDowns;
+        private System.Windows.Forms.ToolTip btnToolTip;
+        private System.Windows.Forms.Button btnMap;
     }
 }
 
