@@ -341,7 +341,7 @@
             // lblChooseClass
             // 
             this.lblChooseClass.AutoSize = true;
-            this.lblChooseClass.Location = new System.Drawing.Point(366, 93);
+            this.lblChooseClass.Location = new System.Drawing.Point(353, 100);
             this.lblChooseClass.Name = "lblChooseClass";
             this.lblChooseClass.Size = new System.Drawing.Size(98, 17);
             this.lblChooseClass.TabIndex = 27;
@@ -350,7 +350,7 @@
             // 
             // btnClassWarrior
             // 
-            this.btnClassWarrior.Location = new System.Drawing.Point(470, 93);
+            this.btnClassWarrior.Location = new System.Drawing.Point(457, 99);
             this.btnClassWarrior.Name = "btnClassWarrior";
             this.btnClassWarrior.Size = new System.Drawing.Size(75, 23);
             this.btnClassWarrior.TabIndex = 28;
@@ -362,7 +362,7 @@
             // 
             // btnClassRogue
             // 
-            this.btnClassRogue.Location = new System.Drawing.Point(551, 94);
+            this.btnClassRogue.Location = new System.Drawing.Point(540, 99);
             this.btnClassRogue.Name = "btnClassRogue";
             this.btnClassRogue.Size = new System.Drawing.Size(75, 23);
             this.btnClassRogue.TabIndex = 29;
@@ -374,7 +374,7 @@
             // 
             // btnClassMage
             // 
-            this.btnClassMage.Location = new System.Drawing.Point(631, 94);
+            this.btnClassMage.Location = new System.Drawing.Point(621, 100);
             this.btnClassMage.Name = "btnClassMage";
             this.btnClassMage.Size = new System.Drawing.Size(75, 23);
             this.btnClassMage.TabIndex = 30;
@@ -536,12 +536,12 @@
         protected System.Windows.Forms.Button btnClassRogue;
         public System.Windows.Forms.Button btnClassMage;
         private System.Windows.Forms.Label lblEnergyName;
-        private System.Windows.Forms.Label lblEnergy;
         private System.Windows.Forms.ComboBox cboSkills;
         private System.Windows.Forms.Button btnUseSkill;
         private System.Windows.Forms.DataGridView dgvCoolDowns;
         private System.Windows.Forms.ToolTip btnToolTip;
         private System.Windows.Forms.Button btnMap;
+        public System.Windows.Forms.Label lblEnergy;
     }
 }
 
