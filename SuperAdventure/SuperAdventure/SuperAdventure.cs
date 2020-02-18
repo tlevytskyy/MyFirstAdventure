@@ -19,6 +19,8 @@ namespace SuperAdventure
         
         private Monster _currentMonster;
 
+        private Random random = new Random();
+
         public SuperAdventure()
         {
             InitializeComponent();
@@ -262,27 +264,31 @@ namespace SuperAdventure
                  // Does the location have a monster?
             if (newLocation.MonsterLivingHere != null)
             {
-                rtbMessages.Text += "You see a " + newLocation.MonsterLivingHere.Name + Environment.NewLine;
-                ScrollToBottomOfMessages();
-
-                // Make a new monster, using the values from the standard monster in the World.Monster list
-                Monster standardMonster = World.MonsterByID(newLocation.MonsterLivingHere.ID);
-
-                _currentMonster = new Monster(standardMonster.ID, standardMonster.Name, standardMonster.MaximumDamage,
-                    standardMonster.RewardExperiencePoints, standardMonster.RewardGold, standardMonster.CurrentHitPoints, standardMonster.MaximumHitPoints, standardMonster.Weakness);
-
-                foreach (LootItem lootItem in standardMonster.LootTable)
+                if(random.Next(1,100) <= newLocation.MonsterLivingHere.SpawnChance)
                 {
-                    _currentMonster.LootTable.Add(lootItem);
-                }
+                    rtbMessages.Text += "You see a " + newLocation.MonsterLivingHere.Name + Environment.NewLine;
+                    ScrollToBottomOfMessages();
 
-                dgvCoolDowns.Visible = true;
-                cboSkills.Visible = true;
-                cboWeapons.Visible = true;
-                cboPotions.Visible = true;
-                btnUseWeapon.Visible = true;
-                btnUsePotion.Visible = true;
-                btnUseSkill.Visible = true;
+                    // Make a new monster, using the values from the standard monster in the World.Monster list
+                    Monster standardMonster = World.MonsterByID(newLocation.MonsterLivingHere.ID);
+
+                    _currentMonster = new Monster(standardMonster.ID, standardMonster.Name, standardMonster.MaximumDamage,
+                        standardMonster.RewardExperiencePoints, standardMonster.RewardGold, standardMonster.CurrentHitPoints, standardMonster.MaximumHitPoints, standardMonster.Weakness);
+
+                    foreach (LootItem lootItem in standardMonster.LootTable)
+                    {
+                        _currentMonster.LootTable.Add(lootItem);
+                    }
+
+                    dgvCoolDowns.Visible = true;
+                    cboSkills.Visible = true;
+                    cboWeapons.Visible = true;
+                    cboPotions.Visible = true;
+                    btnUseWeapon.Visible = true;
+                    btnUsePotion.Visible = true;
+                    btnUseSkill.Visible = true;
+                }   
+                
             }
             else
             {
@@ -644,8 +650,7 @@ namespace SuperAdventure
             rtbMessages.Text += Environment.NewLine;
             ScrollToBottomOfMessages();
 
-            // Move player to current location (to heal player and create a new monster to fight)
-            MoveTo(_player.CurrentLocation);
+          
         }
 
         private void MonsterDealsDamage()
