@@ -62,7 +62,7 @@ namespace SuperAdventure
             Weapon currentWeapon = (Weapon)cboWeapons.SelectedItem;
 
             DealWeaponDamage(currentWeapon);
-
+            
             // Check if the monster is dead
             if (_currentMonster.CurrentHitPoints <= 0)
             {
@@ -73,6 +73,7 @@ namespace SuperAdventure
                 // Monster is still alive
                 MonsterDealsDamage();
             }
+            
             //End turn
             EndTurn();
         }
@@ -266,6 +267,12 @@ namespace SuperAdventure
             {
                 if(random.Next(1,100) <= newLocation.MonsterLivingHere.SpawnChance)
                 {
+
+                    btnNorth.Visible = false;
+                    btnEast.Visible = false;
+                    btnSouth.Visible = false;
+                    btnWest.Visible = false;
+
                     rtbMessages.Text += "You see a " + newLocation.MonsterLivingHere.Name + Environment.NewLine;
                     ScrollToBottomOfMessages();
 
@@ -581,6 +588,7 @@ namespace SuperAdventure
             rtbMessages.Text += Environment.NewLine;
             rtbMessages.Text += "You defeated the " + _currentMonster.Name + Environment.NewLine;
             ScrollToBottomOfMessages();
+            
 
             // Give player experience points for killing the monster
             _player.ExperiencePoints += _currentMonster.RewardExperiencePoints;
@@ -650,7 +658,24 @@ namespace SuperAdventure
             rtbMessages.Text += Environment.NewLine;
             ScrollToBottomOfMessages();
 
-          
+            //reenable movement
+            btnNorth.Visible = (_player.CurrentLocation.LocationToNorth != null);
+            btnEast.Visible = (_player.CurrentLocation.LocationToEast != null);
+            btnSouth.Visible = (_player.CurrentLocation.LocationToSouth != null);
+            btnWest.Visible = (_player.CurrentLocation.LocationToWest != null);
+
+            //hide attack interface and get rid of dead monster
+            _currentMonster = null;
+
+            dgvCoolDowns.Visible = false;
+            cboSkills.Visible = false;
+            cboWeapons.Visible = false;
+            cboPotions.Visible = false;
+            btnUseWeapon.Visible = false;
+            btnUsePotion.Visible = false;
+            btnUseSkill.Visible = false;
+
+
         }
 
         private void MonsterDealsDamage()
