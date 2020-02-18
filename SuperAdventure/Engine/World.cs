@@ -65,12 +65,17 @@ namespace Engine
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_SILK), 25, false));
 
+            Monster fairymonster = new Monster(IDMonster.FAIRY, "Fairy glitter", 5, 30, 10, 4, 4,IDDamageType.CRUSH);
+
+            Monster giantunicorn = new Monster(IDMonster.GIANT_UNICORN, "Giant unicorn", 15, 200, 0, 200, 200);
             Monster giantweasel = new Monster(IDMonster.GIANT_WEASEL, "Giant Weasel with a fedora.", 10, 100, 200, 40, 40);
 
             Monsters.Add(rat);
             Monsters.Add(snake);
             Monsters.Add(giantSpider);
             Monsters.Add(giantweasel);
+            Monsters.Add(giantunicorn);
+            Monsters.Add(fairymonster);
         }
 
         private static void PopulateQuests()
@@ -108,6 +113,26 @@ namespace Engine
 
             Location alchemistHut = new Location(IDLocation.ALCHEMIST_HUT1, "Alchemist's hut", "There are many strange plants on the shelves.");
             alchemistHut.QuestAvailableHere = QuestByID(IDQuest.CLEAR_ALCHEMIST_GARDEN);
+
+            Location mysticbridge = new Location(IDLocation.MYSTICBRIDGE, "Mystic Bridge", "A bridge to the mystic forest.");
+            Location mysticforest1 = new Location(IDLocation.MYSTICFOREST1, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest1.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest2 = new Location(IDLocation.MYSTICFOREST2, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest2.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest3 = new Location(IDLocation.MYSTICFOREST3, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest3.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest4 = new Location(IDLocation.MYSTICFOREST4, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest4.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest5 = new Location(IDLocation.MYSTICFOREST5, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest5.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest6 = new Location(IDLocation.MYSTICFOREST6, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest6.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest7 = new Location(IDLocation.MYSTICFOREST7, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest7.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest8 = new Location(IDLocation.MYSTICFOREST8, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest8.MonsterLivingHere = MonsterByID(IDMonster.FAIRY);
+            Location mysticforest9 = new Location(IDLocation.MYSTICFOREST9, "Mystic Forest", "You are in the mystic forest. Are you lost?");
+            mysticforest9.MonsterLivingHere = MonsterByID(IDMonster.GIANT_UNICORN);
 
             Location alchemistsGarden = new Location(IDLocation.ALCHEMISTS_GARDEN1, "Alchemist's garden", "Many plants are growing here.");
             alchemistsGarden.MonsterLivingHere = MonsterByID(IDMonster.RAT);
@@ -213,6 +238,17 @@ namespace Engine
             Locations.Add(bridge);
             Locations.Add(spiderField);
             Locations.Add(farmhouse2);
+
+            Locations.Add(mysticbridge);
+            Locations.Add(mysticforest1);
+            Locations.Add(mysticforest2);
+            Locations.Add(mysticforest3);
+            Locations.Add(mysticforest4);
+            Locations.Add(mysticforest5);
+            Locations.Add(mysticforest6);
+            Locations.Add(mysticforest7);
+            Locations.Add(mysticforest8);
+            Locations.Add(mysticforest9);
         }
 
         public static void PopulateMapArray()

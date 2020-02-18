@@ -23,3 +23,19 @@ C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\ob
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.dll
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.pdb
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\GDIDrawer.dll
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\Engine.dll
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\Engine.pdb
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\ID Directory.dll
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\ID Directory.pdb
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.csprojAssemblyReference.cache
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.csproj.CopyComplete
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.dll
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.pdb
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\Engine.dll
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\Engine.pdb
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\ID Directory.dll
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\bin\Debug\ID Directory.pdb
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.csprojAssemblyReference.cache
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.csproj.CopyComplete
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.dll
+C:\Users\Taras\Source\Repos\MyFirstAdventure\SuperAdventure\Engine\obj\Debug\Engine.pdb

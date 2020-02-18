@@ -13,7 +13,7 @@ namespace ID_Directory
         public static int[] TOWN_SQUARE1 = new int[2] { 4, 8 };
         public static int[] GUARD_POST1 = new int[2] { 5, 8 };
         public static int[] ALCHEMIST_HUT1 = new int[2] { 4, 7 };
-        public static int[] ALCHEMISTS_GARDEN1 = new int[2] { 4, 6 };
+        public static int[] ALCHEMISTS_GARDEN1 = new int[2] { 3, 1 };
         public static int[] FARMHOUSE1 = new int[2] { 3, 8 };
         public static int[] FARMPATH1 = new int[2] { 2, 8 };
         public static int[] BRIDGE1 = new int[2] { 6, 8 };
@@ -46,6 +46,17 @@ namespace ID_Directory
         public static int[] FARMFIELD10 = new int[2] { 6, 11 };
         public static int[] FARMFIELD11 = new int[2] { 5, 11 };
         public static int[] FARMFIELD12 = new int[2] { 7, 11 };
+
+        public static int[] MYSTICBRIDGE = new int[2] { 4, 6 };
+        public static int[] MYSTICFOREST1 = new int[2] { 4, 5 };
+        public static int[] MYSTICFOREST2 = new int[2] { 3, 5 };
+        public static int[] MYSTICFOREST3 = new int[2] { 5, 5 };
+        public static int[] MYSTICFOREST4 = new int[2] { 3, 4 };
+        public static int[] MYSTICFOREST5 = new int[2] { 4, 4 };
+        public static int[] MYSTICFOREST6 = new int[2] { 5, 4 };
+        public static int[] MYSTICFOREST7 = new int[2] { 5, 3 };
+        public static int[] MYSTICFOREST8 = new int[2] { 3, 3 };
+        public static int[] MYSTICFOREST9 = new int[2] { 3, 2 };
 
         public static int[] BURROW = new int[2] { 7, 15 };
         public static int[] BURROWTREASURE = new int[2] { 6, 15 };

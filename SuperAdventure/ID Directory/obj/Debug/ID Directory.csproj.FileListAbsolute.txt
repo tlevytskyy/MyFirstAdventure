@@ -13,3 +13,8 @@ C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Direct
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.csprojAssemblyReference.cache
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.dll
 C:\Users\Taras\Source\Repos\tlevytskyy\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.pdb
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\ID Directory\bin\Debug\ID Directory.dll
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\ID Directory\bin\Debug\ID Directory.pdb
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.csprojAssemblyReference.cache
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.dll
+C:\Users\Arren Ting\Desktop\MyFirstAdventure\SuperAdventure\ID Directory\obj\Debug\ID Directory.pdb
