@@ -13,7 +13,7 @@ namespace Engine
     {
         public static CDrawer MiniMap = new CDrawer(375, 375);
         
-        public static readonly Location[,] MapArray = new Location[10, 10];
+        public static readonly Location[,] MapArray = new Location[20, 20];
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<Monster> Monsters = new List<Monster>();
         public static readonly List<Quest> Quests = new List<Quest>();
@@ -64,9 +64,12 @@ namespace Engine
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_FANG), 75, true));
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_SILK), 25, false));
 
+            Monster giantweasel = new Monster(IDMonster.GIANT_WEASEL, "Giant Weasel with a fedora.", 10, 100, 200, 40, 40);
+
             Monsters.Add(rat);
             Monsters.Add(snake);
             Monsters.Add(giantSpider);
+            Monsters.Add(giantweasel);
         }
 
         private static void PopulateQuests()
@@ -111,8 +114,51 @@ namespace Engine
             Location farmhouse = new Location(IDLocation.FARMHOUSE1, "Farmhouse", "There is a small farmhouse, with a farmer in front.");
             farmhouse.QuestAvailableHere = QuestByID(IDQuest.CLEAR_FARMERS_FIELD);
 
-            Location farmersField = new Location(IDLocation.FARM_FIELD1, "Farmer's field", "You see rows of vegetables growing here.");
-            farmersField.MonsterLivingHere = MonsterByID(IDMonster.SNAKE);
+            Location path1 = new Location(IDLocation.FARMPATH1, "Path", "A Dirt Path.");
+            Location path2 = new Location(IDLocation.FARMPATH2, "Path", "A Dirt Path.");
+            Location path3 = new Location(IDLocation.FARMPATH3, "Path", "A Dirt Path.");
+            Location path4 = new Location(IDLocation.FARMPATH4, "Path", "A Dirt Path.");
+            Location path5 = new Location(IDLocation.FARMPATH5, "Path", "A Dirt Path.");
+            Location path6 = new Location(IDLocation.FARMPATH6, "Path", "A Dirt Path.");
+            Location path7 = new Location(IDLocation.FARMPATH7, "Path", "A Dirt Path.");
+            Location path8 = new Location(IDLocation.FARMPATH8, "Path", "A Dirt Path.");
+            Location path9 = new Location(IDLocation.FARMPATH9, "Path", "A Dirt Path.");
+            Location path10 = new Location(IDLocation.FARMPATH10, "Path", "A Dirt Path.");
+            Location path11 = new Location(IDLocation.FARMPATH11, "Path", "A Dirt Path.");
+            Location path12 = new Location(IDLocation.FARMPATH12, "Path", "A Dirt Path.");
+            Location path13 = new Location(IDLocation.FARMPATH13, "Path", "A Dirt Path.");
+            Location path14 = new Location(IDLocation.FARMPATH14, "Path", "A Dirt Path.");
+
+
+            Location field1 = new Location(IDLocation.FARMFIELD1, "Field", "A field of wheat.");
+            field1.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field2 = new Location(IDLocation.FARMFIELD2, "Field", "A field of wheat.");
+            field2.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field3 = new Location(IDLocation.FARMFIELD3, "Field", "A field of wheat.");
+            field3.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field4 = new Location(IDLocation.FARMFIELD4, "Field", "A field of wheat.");
+            field4.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field5 = new Location(IDLocation.FARMFIELD5, "Field", "A field of wheat.");
+            field5.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field6 = new Location(IDLocation.FARMFIELD6, "Field", "A field of wheat.");
+            field6.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field7 = new Location(IDLocation.FARMFIELD7, "Field", "A field of wheat.");
+            field7.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field8 = new Location(IDLocation.FARMFIELD8, "Field", "A field of wheat.");
+            field8.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field9 = new Location(IDLocation.FARMFIELD9, "Field", "A field of wheat.");
+            field9.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field10 = new Location(IDLocation.FARMFIELD10, "Field", "A field of wheat.");
+            field10.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field11 = new Location(IDLocation.FARMFIELD11, "Field", "A field of wheat.");
+            field11.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+            Location field12 = new Location(IDLocation.FARMFIELD12, "Field", "A field of wheat.");
+            field12.MonsterLivingHere = MonsterByID(IDMonster.RAT);
+
+            Location burrow = new Location(IDLocation.BURROW, "Burrow", "An unusually large animal burrow.");
+            Location burrowboss = new Location(IDLocation.BURROWBOSS, "Chamber", "A chamber filled to the brim with wheat.");
+            burrowboss.MonsterLivingHere = MonsterByID(IDMonster.GIANT_WEASEL);
+            Location burrowtreasure = new Location(IDLocation.BURROWTREASURE, "Treasure", "A room with a treasure chest in the middle");
 
             Location guardPost = new Location(IDLocation.GUARD_POST1, "Guard post", "There is a large, tough-looking guard here.", ItemByID(IDItem.ADVENTURER_PASS));
 
@@ -130,7 +176,39 @@ namespace Engine
             Locations.Add(alchemistHut);
             Locations.Add(alchemistsGarden);
             Locations.Add(farmhouse);
-            Locations.Add(farmersField);
+
+            Locations.Add(path1);
+            Locations.Add(path2);
+            Locations.Add(path3);
+            Locations.Add(path4);
+            Locations.Add(path5);
+            Locations.Add(path6);
+            Locations.Add(path7);
+            Locations.Add(path8);
+            Locations.Add(path9);
+            Locations.Add(path10);
+            Locations.Add(path11);
+            Locations.Add(path12);
+            Locations.Add(path13);
+            Locations.Add(path14);
+
+            Locations.Add(field1);
+            Locations.Add(field2);
+            Locations.Add(field3);
+            Locations.Add(field4);
+            Locations.Add(field5);
+            Locations.Add(field6);
+            Locations.Add(field7);
+            Locations.Add(field8);
+            Locations.Add(field9);
+            Locations.Add(field10);
+            Locations.Add(field11);
+            Locations.Add(field12);
+
+            Locations.Add(burrow);
+            Locations.Add(burrowboss);
+            Locations.Add(burrowtreasure);
+
             Locations.Add(bridge);
             Locations.Add(spiderField);
             Locations.Add(farmhouse2);
