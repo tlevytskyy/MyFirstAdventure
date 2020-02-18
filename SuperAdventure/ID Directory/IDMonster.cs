@@ -12,6 +12,8 @@ namespace ID_Directory
         public const int RAT = 1;
         public const int SNAKE = 2;
         public const int GIANT_SPIDER = 3;
+        public const int FAIRY = 4;
+        public const int GIANT_UNICORN = 5;
         public const int GIANT_WEASEL = 6;
 
         
