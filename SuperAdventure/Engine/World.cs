@@ -54,6 +54,7 @@ namespace Engine
         private static void PopulateMonsters()
         {
             Monster rat = new Monster(IDMonster.RAT, "Rat", 5, 30, 10, 3, 3, IDDamageType.SLASH);
+            rat.SpawnChance = 50;
             rat.LootTable.Add(new LootItem(ItemByID(IDItem.RAT_TAIL), 75, false));
             rat.LootTable.Add(new LootItem(ItemByID(IDItem.PIECE_OF_FUR), 75, true));
 
@@ -69,7 +70,7 @@ namespace Engine
 
             Monster giantunicorn = new Monster(IDMonster.GIANT_UNICORN, "Giant unicorn", 15, 200, 0, 200, 200);
             Monster giantweasel = new Monster(IDMonster.GIANT_WEASEL, "Giant Weasel with a fedora.", 10, 100, 200, 40, 40);
-
+            giantweasel.SpawnChance = 100;
             Monsters.Add(rat);
             Monsters.Add(snake);
             Monsters.Add(giantSpider);

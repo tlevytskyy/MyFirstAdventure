@@ -20,6 +20,8 @@ namespace Engine
         public int DotDamageTaken;
         public int DotDuration;
         public int StunDuration;
+        public int SpawnChance;
+        public bool IsDead = false;
 
         public Monster(int id, string name, double maxdamage, int rewardexp, int rewardgold, double currenthp, double maxhp, int weakness)
         {
