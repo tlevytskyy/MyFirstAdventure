@@ -67,8 +67,10 @@ namespace Engine
             giantSpider.LootTable.Add(new LootItem(ItemByID(IDItem.SPIDER_SILK), 25, false));
 
             Monster fairymonster = new Monster(IDMonster.FAIRY, "Fairy glitter", 5, 30, 10, 4, 4,IDDamageType.CRUSH);
+            fairymonster.SpawnChance = 25;
 
             Monster giantunicorn = new Monster(IDMonster.GIANT_UNICORN, "Giant unicorn", 15, 200, 0, 200, 200);
+            giantunicorn.SpawnChance = 100;
             Monster giantweasel = new Monster(IDMonster.GIANT_WEASEL, "Giant Weasel with a fedora.", 10, 100, 200, 40, 40);
             giantweasel.SpawnChance = 100;
             Monsters.Add(rat);
