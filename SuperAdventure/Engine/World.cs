@@ -179,7 +179,7 @@ namespace Engine
             field9.MonsterLivingHere = MonsterByID(IDMonster.RAT);
             Location field10 = new Location(IDLocation.FARMFIELD10, "Field", "A field of wheat.");
             field10.MonsterLivingHere = MonsterByID(IDMonster.RAT);
-            Location field11 = new Location(IDLocation.FARMFIELD11, "Field", "A field of wheat.");
+            Location field11 = new Location(IDLocation.FARMFIELD11, "Field", "A field of what.");
             field11.MonsterLivingHere = MonsterByID(IDMonster.RAT);
             Location field12 = new Location(IDLocation.FARMFIELD12, "Field", "A field of wheat.");
             field12.MonsterLivingHere = MonsterByID(IDMonster.RAT);
